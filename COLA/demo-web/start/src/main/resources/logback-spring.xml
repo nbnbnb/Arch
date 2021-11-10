@@ -1,0 +1,49 @@
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/defaults.xml" />
+
+    <!--定义参数,后面可以通过${APP_NAME}使用-->
+    <property name="APP_NAME" value="start" />
+    <property name="LOG_PATH" value="${user.home}/${APP_NAME}/logs" />
+    <property name="LOG_FILE" value="${LOG_PATH}/application.log" />
+
+    <appender name="APPLICATION"
+        class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!--定义日志输出的路径-->
+        <file>${LOG_FILE}</file>
+        <encoder>
+            <pattern>${FILE_LOG_PATTERN}</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_FILE}.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <maxHistory>7</maxHistory>
+            <maxFileSize>50MB</maxFileSize>
+            <totalSizeCap>20GB</totalSizeCap>
+        </rollingPolicy>
+    </appender>
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+            <charset>utf8</charset>
+        </encoder>
+    </appender>
+
+    <!-- rootLogger 是默认的 logger -->
+    <root level="INFO">
+        <!-- 定义了两个 appender，日志会通过往这两个 appender 里面写 -->
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="APPLICATION" />
+    </root>
+
+    <!-- 应用日志 -->
+    <!-- 这个logger 没有指定 appender，它会继承 root 节点中定义的那些 appender -->
+    <logger name="com.alibaba.demo" level="DEBUG"/>
+
+    <!-- 数据库日志-->
+    <!-- 由于这个 logger 自动继承了 root 的 appender，root 中已经有 stdout 的 appender了，自己这边又引入了 stdout 的 appender -->
+    <!-- 如果没有设置 additivity="false" ,就会导致一条日志在控制台输出两次的情况-->
+    <!-- additivity 表示要不要使用 rootLogger 配置的 appender 进行输出-->
+    <logger name="com.apache.ibatis" level="TRACE" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+    </logger>
+</configuration>

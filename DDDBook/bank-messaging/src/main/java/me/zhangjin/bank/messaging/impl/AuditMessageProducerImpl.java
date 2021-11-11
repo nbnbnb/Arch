@@ -1,12 +1,13 @@
 package me.zhangjin.bank.messaging.impl;
 
-import me.zhangjin.bank.domain.types.AuditMessage;
+import me.zhangjin.bank.types.AuditMessage;
 import me.zhangjin.bank.messaging.AuditMessageProducer;
 import me.zhangjin.bank.types.SendResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.stereotype.Component;
 
-
+@Component
 public class AuditMessageProducerImpl implements AuditMessageProducer {
 
     private static final String TOPIC_AUDIT_LOG = "TOPIC_AUDIT_LOG";

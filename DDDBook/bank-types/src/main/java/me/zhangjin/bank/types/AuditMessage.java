@@ -1,11 +1,8 @@
-package me.zhangjin.bank.domain.types;
+package me.zhangjin.bank.types;
 
 import lombok.AllArgsConstructor;
 import lombok.Value;
-import me.zhangjin.bank.domain.entity.Account;
-import me.zhangjin.bank.types.AccountNumber;
-import me.zhangjin.bank.types.Money;
-import me.zhangjin.bank.types.UserId;
+
 
 import java.util.Date;
 
@@ -14,8 +11,8 @@ import java.util.Date;
 public class AuditMessage {
 
     UserId userId;
-    Account source;
-    Account target;
+    AccountNumber source;
+    AccountNumber target;
     Money money;
     Date date;
 
@@ -27,4 +24,5 @@ public class AuditMessage {
         // todo
         return null;
     }
+
 }

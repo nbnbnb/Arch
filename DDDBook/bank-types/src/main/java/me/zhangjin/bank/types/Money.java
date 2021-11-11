@@ -1,6 +1,7 @@
 package me.zhangjin.bank.types;
 
 import lombok.Value;
+import me.zhangjin.bank.exception.InvalidMoneyException;
 
 import java.math.BigDecimal;
 
@@ -10,6 +11,11 @@ public class Money {
     Currency currency;
 
     public Money(BigDecimal amount, Currency currency) {
+        // 做校验
+        if (amount == null || amount.compareTo(BigDecimal.ZERO) < 0) {
+            throw new InvalidMoneyException();
+        }
+
         this.amount = amount;
         this.currency = currency;
     }

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.alibaba.cola.demo.web</groupId>
+        <artifactId>bank-web-parent</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>bank-application</artifactId>
+    <packaging>jar</packaging>
+    <name>bank-application</name>
+
+    <dependencies>
+        <!-- COLA components -->
+        <dependency>
+            <groupId>com.alibaba.cola</groupId>
+            <artifactId>cola-component-domain-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.cola</groupId>
+            <artifactId>cola-component-exception</artifactId>
+        </dependency>
+        <!-- COLA components End-->
+
+        <dependency>
+            <groupId>com.alibaba.cola.demo.web</groupId>
+            <artifactId>bank-domain</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba.cola.demo.web</groupId>
+            <artifactId>bank-persistence</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba.cola.demo.web</groupId>
+            <artifactId>bank-types</artifactId>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <configuration>
+                        <skip>true</skip>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+</project>

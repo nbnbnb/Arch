@@ -3,7 +3,7 @@ package me.zhangjin.bank.repository.impl;
 import me.zhangjin.bank.domain.entity.Account;
 import me.zhangjin.bank.persistence.AccountBuilder;
 import me.zhangjin.bank.persistence.AccountDO;
-import me.zhangjin.bank.persistence.AccountMapper;
+import me.zhangjin.bank.persistence.AccountDAO;
 import me.zhangjin.bank.repository.AccountRepository;
 import me.zhangjin.bank.types.AccountId;
 import me.zhangjin.bank.types.AccountNumber;
@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 public class AccountRepositoryImpl implements AccountRepository {
 
     @Autowired
-    private AccountMapper accountDAO;
+    private AccountDAO accountDAO;
 
     @Autowired
     private AccountBuilder accountBuilder;

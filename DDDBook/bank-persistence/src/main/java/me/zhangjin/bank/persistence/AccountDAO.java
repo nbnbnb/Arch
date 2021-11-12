@@ -2,7 +2,12 @@ package me.zhangjin.bank.persistence;
 
 import me.zhangjin.bank.domain.entity.Account;
 
-public interface AccountMapper {
+/**
+ * 将 DO 存储到数据库
+ * <p>
+ * 从数据库获取记录转换为 DO
+ */
+public interface AccountDAO {
 
     AccountDO selectById(Long accountId);
 
@@ -13,4 +18,5 @@ public interface AccountMapper {
     int insert(AccountDO accountDO);
 
     int update(AccountDO accountDO);
+
 }

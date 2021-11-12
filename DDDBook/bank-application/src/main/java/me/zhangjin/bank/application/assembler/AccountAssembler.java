@@ -24,5 +24,5 @@ public class AccountAssembler {
     public Account toEntity(AccountDTO accountDTO) {
         return null;
     }
-    
+
 }

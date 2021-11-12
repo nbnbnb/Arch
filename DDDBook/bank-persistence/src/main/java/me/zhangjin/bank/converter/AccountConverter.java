@@ -16,7 +16,11 @@ import me.zhangjin.bank.persistence.AccountDO;
  * Data Mapper 的出处也在 P of EAA一书里：Data Mapper
  */
 public interface AccountConverter {
+
+    // 推荐使用 MapStruct 进行简化操作
+
     Account toEntity(AccountDO accountDO);
 
     AccountDO toDO(Account account);
+
 }

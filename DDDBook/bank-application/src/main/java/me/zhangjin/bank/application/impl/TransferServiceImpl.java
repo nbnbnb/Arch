@@ -60,6 +60,7 @@ public class TransferServiceImpl implements TransferService {
         // 发送审计消息
         AuditMessage message = new AuditMessage(sourceAccount.getUserId(), sourceAccount.getAccountNumber(),
                 targetAccount.getAccountNumber(), targetMoney, new Date());
+
         auditMessageProducer.send(message);
 
         return Result.success(true);

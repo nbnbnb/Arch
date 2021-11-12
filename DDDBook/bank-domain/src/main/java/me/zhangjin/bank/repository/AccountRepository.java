@@ -1,9 +1,10 @@
 package me.zhangjin.bank.repository;
 
 import me.zhangjin.bank.domain.entity.Account;
-import me.zhangjin.bank.types.AccountId;
-import me.zhangjin.bank.types.AccountNumber;
-import me.zhangjin.bank.types.UserId;
+import me.zhangjin.bank.domain.dp.AccountId;
+import me.zhangjin.bank.domain.dp.AccountNumber;
+import me.zhangjin.bank.domain.dp.UserId;
+
 
 public interface AccountRepository {
 

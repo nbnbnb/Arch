@@ -1,19 +1,21 @@
-package me.zhangjin.bank.types;
+package me.zhangjin.bank.message;
 
 import lombok.AllArgsConstructor;
 import lombok.Value;
 
 
+import javax.swing.plaf.DesktopIconUI;
+import java.math.BigDecimal;
 import java.util.Date;
 
 @Value
 @AllArgsConstructor
 public class AuditMessage {
 
-    UserId userId;
-    AccountNumber source;
-    AccountNumber target;
-    Money money;
+    Long userId;
+    String source;
+    String target;
+    BigDecimal money;
     Date date;
 
     public String serialize() {

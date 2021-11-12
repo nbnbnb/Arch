@@ -1,4 +1,4 @@
-package me.zhangjin.bank.types;
+package me.zhangjin.bank.domain.dp;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

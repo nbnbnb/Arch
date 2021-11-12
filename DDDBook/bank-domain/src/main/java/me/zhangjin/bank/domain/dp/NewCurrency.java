@@ -1,11 +1,11 @@
-package me.zhangjin.bank.types;
+package me.zhangjin.bank.domain.dp;
 
 import lombok.AllArgsConstructor;
 import lombok.Value;
 
+
 @Value
-@AllArgsConstructor
-public class Currency {
+public class NewCurrency {
     String currency;
 
     public String getValue() {

@@ -2,8 +2,8 @@ package me.zhangjin.bank.domain.service.impl;
 
 import me.zhangjin.bank.domain.entity.Account;
 import me.zhangjin.bank.domain.service.AccountTransferService;
-import me.zhangjin.bank.types.ExchangeRate;
-import me.zhangjin.bank.types.Money;
+import me.zhangjin.bank.domain.dp.ExchangeRate;
+import me.zhangjin.bank.domain.dp.Money;
 
 public class AccountTransferServiceImpl implements AccountTransferService {
 

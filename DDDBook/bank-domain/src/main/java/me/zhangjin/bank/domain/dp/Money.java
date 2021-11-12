@@ -1,16 +1,16 @@
-package me.zhangjin.bank.types;
+package me.zhangjin.bank.domain.dp;
 
-import lombok.Value;
 import me.zhangjin.bank.exception.InvalidMoneyException;
 
 import java.math.BigDecimal;
 
-@Value
+
 public class Money {
     BigDecimal amount;
-    Currency currency;
+    NewCurrency currency;
 
-    public Money(BigDecimal amount, Currency currency) {
+    public Money(BigDecimal amount, NewCurrency currency) {
+
         // 做校验
         if (amount == null || amount.compareTo(BigDecimal.ZERO) < 0) {
             throw new InvalidMoneyException();
@@ -30,5 +30,13 @@ public class Money {
 
     public int compareTo(Money money) {
         return 0;
+    }
+
+    public NewCurrency getCurrency() {
+        return currency;
+    }
+
+    public BigDecimal getAmount(){
+        return this.amount;
     }
 }

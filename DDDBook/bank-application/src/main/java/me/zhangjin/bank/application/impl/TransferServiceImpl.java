@@ -1,9 +1,10 @@
 package me.zhangjin.bank.application.impl;
 
 import me.zhangjin.bank.application.TransferService;
+import me.zhangjin.bank.domain.dp.*;
 import me.zhangjin.bank.domain.entity.Account;
 import me.zhangjin.bank.domain.service.AccountTransferService;
-import me.zhangjin.bank.types.AuditMessage;
+import me.zhangjin.bank.message.AuditMessage;
 import me.zhangjin.bank.external.ExchangeRateService;
 import me.zhangjin.bank.messaging.AuditMessageProducer;
 import me.zhangjin.bank.repository.AccountRepository;
@@ -35,7 +36,7 @@ public class TransferServiceImpl implements TransferService {
 
         // 参数校验
         // Domain Primitive
-        Money targetMoney = new Money(targetAmount, new Currency(targetCurrency));
+        Money targetMoney = new Money(targetAmount, new NewCurrency(targetCurrency));
 
         // 访问 bank-persistence
         // 接口能力是在 domain 中提供的
@@ -58,8 +59,9 @@ public class TransferServiceImpl implements TransferService {
         // 访问 bank-messaging
         // 接口能力是在 domain 中提供的
         // 发送审计消息
-        AuditMessage message = new AuditMessage(sourceAccount.getUserId(), sourceAccount.getAccountNumber(),
-                targetAccount.getAccountNumber(), targetMoney, new Date());
+        AuditMessage message = new AuditMessage(sourceAccount.getUserId().getSourceUserId(),
+                sourceAccount.getAccountNumber().getAccountNumber(),
+                targetAccount.getAccountNumber().getAccountNumber(), targetMoney.getAmount(), new Date());
 
         auditMessageProducer.send(message);
 

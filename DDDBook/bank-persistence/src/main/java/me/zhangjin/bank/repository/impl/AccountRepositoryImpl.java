@@ -5,9 +5,9 @@ import me.zhangjin.bank.persistence.AccountBuilder;
 import me.zhangjin.bank.persistence.AccountDO;
 import me.zhangjin.bank.persistence.AccountDAO;
 import me.zhangjin.bank.repository.AccountRepository;
-import me.zhangjin.bank.types.AccountId;
-import me.zhangjin.bank.types.AccountNumber;
-import me.zhangjin.bank.types.UserId;
+import me.zhangjin.bank.domain.dp.AccountId;
+import me.zhangjin.bank.domain.dp.AccountNumber;
+import me.zhangjin.bank.domain.dp.UserId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

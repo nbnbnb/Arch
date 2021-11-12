@@ -1,6 +1,6 @@
 package me.zhangjin.bank.messaging.impl;
 
-import me.zhangjin.bank.types.AuditMessage;
+import me.zhangjin.bank.message.AuditMessage;
 import me.zhangjin.bank.messaging.AuditMessageProducer;
 import me.zhangjin.bank.types.SendResult;
 import org.springframework.beans.factory.annotation.Autowired;

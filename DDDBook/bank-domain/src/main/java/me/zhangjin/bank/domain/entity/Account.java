@@ -1,10 +1,10 @@
 package me.zhangjin.bank.domain.entity;
 
-import lombok.Data;
-import me.zhangjin.bank.exception.DailyLimitExceededException;
-import me.zhangjin.bank.exception.InsufficientFundsException;
-import me.zhangjin.bank.exception.InvalidCurrencyException;
-import me.zhangjin.bank.types.*;
+
+import me.zhangjin.bank.domain.dp.*;
+import me.zhangjin.bank.exception.*;
+
+
 
 /**
  * 实体对象是我们正常业务应该用的业务模型，它的字段和方法应该和业务语言保持一致，和持久化方式无关
@@ -21,7 +21,7 @@ public class Account {
     private Money available;
     private Money dailyLimit;
 
-    public Currency getCurrency() {
+    public NewCurrency getCurrency() {
         return this.available.getCurrency();
     }
 

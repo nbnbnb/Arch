@@ -1,8 +1,8 @@
 package me.zhangjin.bank.domain.service;
 
 import me.zhangjin.bank.domain.entity.Account;
-import me.zhangjin.bank.types.ExchangeRate;
-import me.zhangjin.bank.types.Money;
+import me.zhangjin.bank.domain.dp.ExchangeRate;
+import me.zhangjin.bank.domain.dp.Money;
 
 /**
  * 领域服务

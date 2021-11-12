@@ -1,8 +1,8 @@
 package external.impl;
 
 import me.zhangjin.bank.external.ExchangeRateService;
-import me.zhangjin.bank.types.Currency;
-import me.zhangjin.bank.types.ExchangeRate;
+import me.zhangjin.bank.domain.dp.NewCurrency;
+import me.zhangjin.bank.domain.dp.ExchangeRate;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
@@ -14,7 +14,7 @@ public class ExchangeRateServiceImpl implements ExchangeRateService {
     private YahooForexService yahooForexService;
 
     @Override
-    public ExchangeRate getExchangeRate(Currency source, Currency target) {
+    public ExchangeRate getExchangeRate(NewCurrency source, NewCurrency target) {
         if (source.equals(target)) {
             return new ExchangeRate(BigDecimal.ONE, source, target);
         }

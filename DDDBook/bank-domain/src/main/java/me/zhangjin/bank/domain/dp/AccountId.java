@@ -6,9 +6,11 @@ import lombok.Value;
 @Value
 @AllArgsConstructor
 public class AccountId {
+
     Long accountId;
 
     public Long getValue() {
         return accountId;
     }
+
 }

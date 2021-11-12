@@ -34,7 +34,7 @@ public class AccountRepositoryImpl implements AccountRepository {
 
     @Override
     public Account find(UserId userId) {
-        AccountDO accountDO = accountDAO.selectByUserId(userId.getId());
+        AccountDO accountDO = accountDAO.selectByUserId(userId.getValue());
         return accountBuilder.toAccount(accountDO);
     }
 

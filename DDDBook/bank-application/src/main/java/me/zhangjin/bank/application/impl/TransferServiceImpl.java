@@ -59,9 +59,10 @@ public class TransferServiceImpl implements TransferService {
         // 访问 bank-messaging
         // 接口能力是在 domain 中提供的
         // 发送审计消息
-        AuditMessage message = new AuditMessage(sourceAccount.getUserId().getSourceUserId(),
-                sourceAccount.getAccountNumber().getAccountNumber(),
-                targetAccount.getAccountNumber().getAccountNumber(), targetMoney.getAmount(), new Date());
+        AuditMessage message = new AuditMessage(sourceUserId,
+                sourceAccount.getAccountNumber().getValue(),
+                targetAccount.getAccountNumber().getValue(),
+                targetMoney.getValue(), new Date());
 
         auditMessageProducer.send(message);
 

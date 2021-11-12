@@ -9,7 +9,7 @@ public class UserId {
 
     Long sourceUserId;
 
-    public Long getId() {
+    public Long getValue() {
         return sourceUserId;
     }
 

@@ -1,10 +1,12 @@
 package me.zhangjin.bank.domain.dp;
 
+import lombok.Data;
 import me.zhangjin.bank.exception.InvalidMoneyException;
 
 import java.math.BigDecimal;
 
 
+@Data
 public class Money {
     BigDecimal amount;
     NewCurrency currency;
@@ -36,7 +38,7 @@ public class Money {
         return currency;
     }
 
-    public BigDecimal getAmount(){
+    public BigDecimal getValue() {
         return this.amount;
     }
 }

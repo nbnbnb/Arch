@@ -13,6 +13,8 @@ import org.springframework.core.annotation.Order;
  */
 public class AccountAssembler {
 
+    // 推荐使用 MapStruct 进行简化操作
+
     // 通过各种实体，生成DTO
     public AccountDTO toDTO(Account account) {
         return null;
@@ -22,5 +24,5 @@ public class AccountAssembler {
     public Account toEntity(AccountDTO accountDTO) {
         return null;
     }
-
+    
 }

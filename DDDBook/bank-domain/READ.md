@@ -2,6 +2,9 @@
 * Domain 模块是核心业务逻辑的集中地，包含`有状态的 Entity`、领域服务 Domain Service、以及各种`外部依赖的接口类`（如 Repository、ACL、中间件等）
 * Domain 模块仅依赖 Types 模块，也是纯 POJO
 
+> 测试
+* Domain 属于无外部依赖的纯 POJO，基本上都可以 100% 的被单元测试覆盖
+
 ![img_2.png](img_2.png)
 
 * * *

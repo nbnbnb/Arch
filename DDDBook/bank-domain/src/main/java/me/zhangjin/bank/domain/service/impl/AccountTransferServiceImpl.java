@@ -9,6 +9,7 @@ public class AccountTransferServiceImpl implements AccountTransferService {
 
     @Override
     public void transfer(Account sourceAccount, Account targetAccount, Money targetMoney, ExchangeRate exchangeRate) {
+
         // 注意：ExchangeRate 外部依赖是传递进来的
         Money sourceMoney = exchangeRate.exchangeTo(targetMoney);
 

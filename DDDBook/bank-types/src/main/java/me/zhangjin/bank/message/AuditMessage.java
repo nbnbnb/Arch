@@ -22,6 +22,7 @@ public class AuditMessage {
         return userId + "," + source + "," + target + "," + money + "," + date;
     }
 
+    // 因为中间件通常需要有通用型，中间件的接口通常是 String 或 Byte[] 类型的
     public static AuditMessage deserialize(String value) {
         // todo
         return null;

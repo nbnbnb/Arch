@@ -11,9 +11,9 @@ import java.util.Map;
 public class DbContext<T extends Aggregate<ID>, ID extends Identifier> {
 
     @Getter
-    private Class<? extends T> aggregateClass;
+    private final Class<? extends T> aggregateClass;
 
-    private Map<ID, T> aggregateMap = new HashMap<>();
+    private final Map<ID, T> aggregateMap = new HashMap<>();
 
     public DbContext(Class<? extends T> aggregateClass) {
         this.aggregateClass = aggregateClass;

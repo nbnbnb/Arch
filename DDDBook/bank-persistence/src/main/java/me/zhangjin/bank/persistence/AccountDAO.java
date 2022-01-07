@@ -30,4 +30,6 @@ public interface AccountDAO {
 
     int update(AccountDO accountDO);
 
+    int delete(AccountDO accountDO);
+
 }

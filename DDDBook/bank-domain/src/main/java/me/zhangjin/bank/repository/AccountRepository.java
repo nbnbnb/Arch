@@ -11,14 +11,12 @@ import me.zhangjin.bank.domain.dp.UserId;
 // 通过 Account 对象，避免了其他业务逻辑代码和数据库的直接耦合
 // 避免了当数据库字段变化时，大量业务逻辑也跟着变的问题
 
-public interface AccountRepository {
+public interface AccountRepository extends Repository<Account, AccountId> {
 
-    Account find(AccountId id);
+    // 添加扩展的接口
 
     Account find(AccountNumber accountNumber);
 
     Account find(UserId userId);
-
-    Account save(Account account);
 
 }

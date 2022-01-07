@@ -2,6 +2,7 @@ package me.zhangjin.bank.domain.entity;
 
 import me.zhangjin.bank.domain.dp.*;
 import me.zhangjin.bank.exception.*;
+import me.zhangjin.bank.repository.Aggregate;
 
 /**
  * <p>实体对象是我们正常业务应该用的业务模型，它的字段和方法应该和业务语言保持一致，和持久化方式无关
@@ -10,7 +11,7 @@ import me.zhangjin.bank.exception.*;
  *
  * <p>Entity 的生命周期应该仅存在于内存中，不需要可序列化和可持久化
  */
-public class Account {
+public class Account implements Aggregate<AccountId> {
 
     // Account 是基于领域逻辑的实体类，它的字段和数据库储存不需要有必然的联系
     // Entity 包含数据，同时也应该包含行为
@@ -51,5 +52,10 @@ public class Account {
 
     public AccountNumber getAccountNumber() {
         return this.accountNumber;
+    }
+
+    @Override
+    public AccountId getId() {
+        return null;
     }
 }

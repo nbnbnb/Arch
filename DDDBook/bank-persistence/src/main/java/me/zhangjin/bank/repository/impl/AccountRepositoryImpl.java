@@ -11,8 +11,16 @@ import me.zhangjin.bank.domain.dp.UserId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+// AccountRepositoryImpl 实现类，由于其职责被单一出来
+// 只需要关注 Account 到 AccountDO 的映射关系和 Repository 方法到 DAO 方法之间的映射关系，相对于来说更容易测试
+
 @Component
 public class AccountRepositoryImpl implements AccountRepository {
+
+    // Repository 对应的是 Entity 对象读取储存的抽象，在接口层面做统一，不关注底层实现
+    // 比如，通过 save 保存一个 Entity 对象，但至于具体是 insert 还是 update 并不关心
+
+    // Repository 的具体实现类通过调用 DAO 来实现各种操作，通过 Builder/Factory/Converter 对象实现 AccountDO 到 Account 之间的转化
 
     @Autowired
     private AccountDAO accountDAO;

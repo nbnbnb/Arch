@@ -16,6 +16,15 @@ public class ExchangeRate {
     NewCurrency to;
 
     public ExchangeRate(BigDecimal rate, NewCurrency from, NewCurrency to) {
+
+        if (rate == null) {
+            throw new IllegalArgumentException("rate is null");
+        }
+
+        if (rate.compareTo(BigDecimal.ZERO) < 0) {
+            throw new IllegalArgumentException("rate < 0");
+        }
+
         this.rate = rate;
         this.from = from;
         this.to = to;

@@ -2,6 +2,7 @@ package me.zhangjin.bank.repository;
 
 import javax.validation.constraints.NotNull;
 
+// 带基础接口和通用帮助类的 Repository
 public interface Repository<T extends Aggregate<ID>, ID extends Identifier> {
 
     /**

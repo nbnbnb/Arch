@@ -52,8 +52,20 @@
 ![img_4.png](img_4.png)
 ![img_5.png](img_5.png)
 
+### 模型所在模块和转化器
+
+![img_6.png](img_6.png)
+
+#### 模型规范总结
 
 
-
-
+|         | DO             | Entity                           | DTO                                    |
+|---------|----------------|----------------------------------|----------------------------------------|
+| 目的      | 数据库表映射         | 业务逻辑                             | 适配业务场景                                 |
+| 代码层级    | Infrastructure | Domain                           | Application                            |
+| 命名规范    | XxxDO          | Xxx                              | XxxDTO<br/>XxxCommand<br/>XxxRequest 等 |
+| 字段名称标准  | 数据库表字段名        | 业务语言                             | 和调用方商定                                 |
+| 字段数据类型  | 数据库字段类型        | 尽量是有业务含义的类型，比如 DP                | 和调用方商定                                 |
+| 是否需要序列化 | 不需要            | 不需要                              | 需要                                     |
+| 转换器     | Data Converter | Data Converter<br/>DTO Assembler | DTO Assembler                          |
 

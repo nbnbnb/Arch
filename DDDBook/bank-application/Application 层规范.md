@@ -1,5 +1,19 @@
 ### Application 层规范
 
+```
+入参：具像化 Command、Query、Event 对象作为 ApplicationService 的入参，唯一可以的例外是单 ID 查询的场景
+
+CQE 的语意化：CQE 对象有语意，不同用例之间语意不同，即使参数一样也要避免复用
+
+入参校验：基础校验通过 Bean Validation api 解决。Spring Validation 自带 Validation 的 AOP，也可以自己写 AOP
+
+出参：统一返回 DTO，而不是 Entity 或 DO
+
+DTO 转化：用 DTO Assembler 负责 Entity/VO 到 DTO 的转化
+
+异常处理：不统一捕捉异常，可以随意抛异常
+```
+
 > Application 层的几个核心类：
 > 
 * ApplicationService 应用服务
@@ -42,8 +56,18 @@ Event事件
 
 ##### CQE 的校验
 
-* 规范：CQE 对象的校验应该前置，避免在 ApplicationService 里做参数的校验
+* 规范：CQE 对象的校验应该`前置`，避免在 ApplicationService 里做参数的校验
+  * 前置的意思是这个判断不在实现方法中，而是在进入实现方法之前（校验逻辑还是在 ApplicationService 中）
   * 可以通过 JSR303/380 和 Spring Validation 来实现
+
+```java
+@Validated // Spring 的注解
+public class CheckoutServiceImpl implements CheckoutService {
+    OrderDTO checkout(@Valid CheckoutCommand cmd) { // 这里@Valid 是 JSR-303/380 的注解
+        // 如果校验失败会抛异常，在 interface 层被捕捉
+    }
+}
+```
 
 这种做法的好处是，让 ApplicationService 更加清爽，同时各种错误信息可以通过 Bean Validation 的 API 做各种`个性化定制`
 
@@ -191,16 +215,4 @@ ApplicationService 的代码通常有类似的结构：
 Repository 可以认为是一种特殊的 ACL，屏蔽了具体数据操作的细节，即使底层数据库结构变更，数据库类型变更，或者加入其他的持久化方式，Repository 的接口保持稳定，ApplicationService 就能保持不变
 
 一些理论框架里 ACL Facade 也被叫做 Gateway，含义是一样的
-
-#### Orchestration vs Choreography
-
-
-
-
-
-
-
-
-
-
 

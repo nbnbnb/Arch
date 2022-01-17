@@ -1,9 +1,11 @@
 package me.zhangjin.bank.application.impl;
 
 import me.zhangjin.bank.application.TransferService;
+import me.zhangjin.bank.command.TransferCommand;
 import me.zhangjin.bank.domain.dp.*;
 import me.zhangjin.bank.domain.entity.Account;
 import me.zhangjin.bank.domain.service.AccountTransferService;
+import me.zhangjin.bank.dto.TransferDTO;
 import me.zhangjin.bank.message.AuditMessage;
 import me.zhangjin.bank.external.ExchangeRateService;
 import me.zhangjin.bank.messaging.AuditMessageProducer;
@@ -47,7 +49,12 @@ public class TransferServiceImpl implements TransferService {
     private AccountTransferService accountTransferService;
 
     @Override
-    public Result<Boolean> transfer(Long sourceUserId, String targetAccountNumber, BigDecimal targetAmount, String targetCurrency) {
+    public TransferDTO transfer(TransferCommand transferCommand) {
+
+        BigDecimal targetAmount = transferCommand.getTargetAmount();
+        String targetCurrency = transferCommand.getTargetCurrency();
+        Long sourceUserId = transferCommand.getSourceUserId();
+        String targetAccountNumber = transferCommand.getTargetAccountNumber();
 
         // 参数校验
         // Domain Primitive
@@ -81,7 +88,11 @@ public class TransferServiceImpl implements TransferService {
 
         auditMessageProducer.send(message);
 
-        return Result.success(true);
+        TransferDTO res = new TransferDTO();
+        res.setSuccess(true);
+        res.setMessage("");
+
+        return res;
 
     }
 

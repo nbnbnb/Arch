@@ -46,13 +46,27 @@
 
 * 如果业务需要通知卖家，下单系统的单一职责不应该为消息通知负责，但订单管理系统需要根据订单状态的推进主动触发消息，所以是这个功能的负责人
 
+
+* Event-Driven 事件驱动
+  * 上游：下单
+    * 对下游 "订单管理" 无感知
+  * 下游：订单管理
+    * 依赖上游 "下单"
+    * 需要感知上游 "下单"的事件
+
+* Command-Driven 指令驱动
+  * 上游：订单管理
+    * 订单系统需要负责通知，需要主动出发消息系统
+  * 下游：消息通知
+    * 处理请求，奖结果返回给调用方，由调用方来判断下一步的操作
+
 * * *
 
 反例：最近几年比较流行的 Event-Driven Architecture（EDA）事件驱动架构，以及 Reactive-Programming 响应式编程（比如 RxJava），虽然有很多创新，但在一定程度上是 `“当你有把锤子，所有问题都是钉子”` 的典型案例。他们对一些基于事件的、流处理的问题有奇效，但如果拿这些框架硬套指令驱动的业务，就会感到代码极其 “不协调”，认知成本提高。所以在日常选型中，还是要先根据业务场景梳理出来是哪些流程中的部分是 Orchestration，哪些是 Choreography，然后再选择相对应的框架。
 
 #### 跟 DDD 分层架构的关系
 
-* O&C 其实是 Interface 层的关注点，Orchestration = 对外的 API，而 Choreography = 消息或事件。
+* O&C 其实是 Interface 层的关注点，Orchestration = 对外的 API，而 Choreography = 消息或事件
   * 当你决策了 O 还是 C 之后，需要在 interface 层承接这些 “驱动力”
 * 无论 O&C 如何设计，Application 层都 “无感知”
   * 因为 ApplicationService 天生就可以处理 Command、Query 和 Event，至于这些对象怎么来，是 Interface 层的决策

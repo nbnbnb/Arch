@@ -1,4 +1,4 @@
-### Web 模块
+### Web 模块 - 接口层 - 面向协议
 
 * Web 模块包含 Controller 等相关代码
 * 如果用 SpringMVC 则需要依赖 Spring

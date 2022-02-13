@@ -1,18 +1,21 @@
 ### Application 层规范
 
-```
-入参：具像化 Command、Query、Event 对象作为 ApplicationService 的入参，唯一可以的例外是单 ID 查询的场景
+> 入参
+* 具像化 Command、Query、Event 对象作为 ApplicationService 的入参，唯一可以的例外是单 ID 查询的场景
+  * CQE 对象有语意，不同用例之间语意不同，即使参数一样也要避免复用
+* 基础校验通过 Bean Validation API 解决
+  * Spring Validation 自带 Validation 的 AOP，也可以自己写 AOP
 
-CQE 的语意化：CQE 对象有语意，不同用例之间语意不同，即使参数一样也要避免复用
+> 出参
+* 统一返回 DTO，而不是 Entity 或 DO
 
-入参校验：基础校验通过 Bean Validation api 解决。Spring Validation 自带 Validation 的 AOP，也可以自己写 AOP
+> DTO 转化
+* 用 DTO Assembler 负责 Entity/VO 到 DTO 的转化
 
-出参：统一返回 DTO，而不是 Entity 或 DO
+> 异常处理
+* 统一捕捉异常，可以随意抛异常 
 
-DTO 转化：用 DTO Assembler 负责 Entity/VO 到 DTO 的转化
-
-异常处理：不统一捕捉异常，可以随意抛异常
-```
+* * *
 
 > Application 层的几个核心类：
 > 
@@ -27,14 +30,14 @@ DTO 转化：用 DTO Assembler 负责 Entity/VO 到 DTO 的转化
 
 #### Command、Query、Event 对象
 
-Command指令
+Command 指令
 * 指调用方明确想让系统操作的指令，其预期是对一个系统有影响，也就是写操作
 * 通常来讲指令需要有一个明确的返回值（如同步的操作结果，或异步的指令已经被接受）。
 
-Query查询
+Query 查询
 * 指调用方明确想查询的东西，包括查询参数、过滤、分页等条件，其预期是对一个系统的数据完全不影响的，也就是只读操作。
 
-Event事件
+Event 事件
 * 指一件已经发生过的既有事实，需要系统根据这个事实作出改变或者响应的，通常事件处理都会有一定的写操作
 * 事件处理器不会有返回值
 * 这里需要注意一下的是，Application 层的 Event 概念和 Domain 层的 DomainEvent 是类似的概念，但不一定是同一回事，这里的 Event 更多是外部一种通知机制而已

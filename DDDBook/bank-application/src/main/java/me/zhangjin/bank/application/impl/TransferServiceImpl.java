@@ -61,7 +61,7 @@ public class TransferServiceImpl implements TransferService {
         Money targetMoney = new Money(targetAmount, new NewCurrency(targetCurrency));
 
         // 访问 bank-persistence
-        // 接口能力是在 domain 中提供的
+        // 接口能力是在 Domain 中提供的
         // 读数据
         Account sourceAccount = accountRepository.find(new UserId(sourceUserId));
         Account targetAccount = accountRepository.find(new AccountNumber(targetAccountNumber));

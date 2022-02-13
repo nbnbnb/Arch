@@ -55,7 +55,7 @@ Event 事件
 * CQE：CQE 对象是 ApplicationService 的输入，是有明确的 ”意图“ 的，所以这个对象必须保证其 ”正确性“
 * DTO：DTO 对象只是数据容器，只是为了和外部交互，所以本身不包含任何逻辑，只是贫血对象
 
-最重要的一点：因为 CQE 是 ”意图“，所以 CQE 对象在理论上可以有”无限“个，每个代表不同的意图；但是 DTO 作为模型数据容器，和模型一一对应，所以是有限的
+最重要的一点：因为 CQE 是`意图`，所以 CQE 对象在理论上可以有`无限`个，每个代表不同的意图；但是 DTO 作为模型数据容器，和模型一一对应，所以是`有限`的
 
 ##### CQE 的校验
 
@@ -76,7 +76,7 @@ public class CheckoutServiceImpl implements CheckoutService {
 
 ##### 避免复用 CQE
 
-因为 CQE 是有 “意图” 和 “语意” 的，我们需要尽量避免 CQE 对象的复用，哪怕所有的参数都一样，只要他们的语意不同，尽量还是要用不同的对象
+因为 CQE 是有`意图`和`语意`的，我们需要尽量避免 CQE 对象的复用，哪怕所有的参数都一样，只要他们的语意不同，尽量还是要用不同的对象
 
 * 规范：针对于不同语意的指令，要避免 CQE 对象的复用
 
@@ -91,7 +91,7 @@ public class CheckoutServiceImpl implements CheckoutService {
 * 针对于比较复杂的业务流程，可以通过增加独立的 CommandHandler、EventHandler 来降低一个类中的代码量
 
 * 比较激进一点，通过 CommandBus、EventBus，直接将指令或事件抛给对应的 Handler
-  * 接口层通过消息队列收到 MQ 消息后，生成 Event，然后由 EventBus 做路由到对应的 Handler
+  * `接口层`通过消息队列收到 MQ 消息后，生成 Event，然后由 EventBus 做路由到对应的 Handler
 
 对于第 3 种方法的说明
 ```
@@ -192,19 +192,19 @@ ApplicationService 的代码通常有类似的结构：
 
 异常的好处是能明确的知道错误的来源，堆栈等
 
-在 Interface 层统一捕捉异常是为了避免异常堆栈信息泄漏到 API 之外，但是在Application 层，异常机制仍然是信息量最大，代码结构最清晰的方法，避免了Result 的一些常见且繁杂的 Result.isSuccess 判断
+在 Interface 层统一捕捉异常是为了避免异常堆栈信息泄漏到 API 之外，但是在 Application 层，异常机制仍然是信息量最大，代码结构最清晰的方法，避免了Result 的一些常见且繁杂的 Result.isSuccess 判断
 
 > 所以在 Application 层、Domain 层，以及 Infrastructure 层，遇到错误直接抛异常是最合理的方法
 
 #### Anti-Corruption Layer 防腐层
 
-如果任何一个服务的方法变更，或者 ItemDO 字段变更，都会有可能影响到ApplicationService 的代码
+如果任何一个服务的方法变更，或者 ItemDO 字段变更，都会有可能影响到 ApplicationService 的代码
 
 也就是说，我们自己的代码会因为强依赖了外部系统的变化而变更，这个在复杂系统中应该是尽量避免的
 
 那么如何做到对外部系统的隔离呢？需要加入 ACL 防腐层
 
-> ACL防腐层的简单原理如下：
+> ACL 防腐层的简单原理如下：
 * 对于依赖的外部对象，我们抽取出所需要的字段，生成一个内部所需的 VO 或 DTO 类
 * 构建一个新的 Facade，在 Facade 中封装调用链路，将外部类转化为内部类
 * 针对外部系统调用，同样的用 Facade 方法封装外部调用链路

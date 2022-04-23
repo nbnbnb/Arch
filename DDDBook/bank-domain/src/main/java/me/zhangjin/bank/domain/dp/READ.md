@@ -1,6 +1,6 @@
 ### Domain Primitive 的定义
 
-让我们重新来定义一下 Domain Primitive ：Domain Primitive 是一个在特定领域里，拥有精准定义的、可自我验证的、拥有行为的 Value Object 。
+让我们重新来定义一下 Domain Primitive ：Domain Primitive 是一个在特定领域里，拥有精准定义的、可自我验证的、拥有行为的 Value Object 
 
 * DP 是一个传统意义上的 Value Object，拥有 Immutable 的特性
 
@@ -19,7 +19,11 @@
 
 > Domain Primitive 和 DDD 里 Value Object 的区别
 
-Domain Primitive 是 Value Object 的进阶版，在原始 VO 的基础上要求每个 DP 拥有概念的整体，而不仅仅是值对象。在 VO 的 Immutable 基础上增加了 Validity 和行为。当然同样的要求无副作用（side-effect free）。
+Domain Primitive 是 Value Object 的进阶版，在原始 VO 的基础上要求每个 DP 拥有概念的整体，而不仅仅是值对象
+
+Domain Primitive 在 VO 的 Immutable 基础上增加了 Validity 和行为
+
+当然 Domain Primitive 同样的要求无副作用（side-effect free）
 
 * * * 
 

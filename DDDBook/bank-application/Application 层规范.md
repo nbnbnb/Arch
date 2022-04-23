@@ -104,9 +104,9 @@ public class CheckoutServiceImpl implements CheckoutService {
 所以我们虽然曾经有过这种尝试，但现在已经不建议这么做了
 ```
 
-##### Application Service 是业务流程的封装，不处理业务逻辑 
+##### Application Service 是`业务流程`的封装，不处理`业务逻辑 `
 
-但如何判断一段代码到底是业务流程还是逻辑呢？
+但如何判断一段代码到底是业务`流程`还是`逻辑`呢？
 
 示例：一个重构后的代码
 
@@ -161,7 +161,7 @@ public class CheckoutServiceImpl implements CheckoutService {
 
 #### 常用的 ApplicationService “套路”
 
-ApplicationService 的代码通常有类似的结构：
+> ApplicationService 的代码通常有类似的结构：
 * AppService 通常不做任何决策（Precondition 除外）
 * 把所有决策交给 DomainService 或 Entity
 * 把跟外部交互的交给 Infrastructure 接口

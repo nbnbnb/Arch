@@ -14,16 +14,7 @@
     <name>order-web</name>
 
     <dependencies>
-        <!-- COLA components -->
-        <dependency>
-            <groupId>com.alibaba.cola</groupId>
-            <artifactId>cola-component-domain-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.alibaba.cola</groupId>
-            <artifactId>cola-component-exception</artifactId>
-        </dependency>
-        <!-- COLA components End-->
+
 
         <dependency>
             <groupId>com.alibaba.cola.demo.web</groupId>

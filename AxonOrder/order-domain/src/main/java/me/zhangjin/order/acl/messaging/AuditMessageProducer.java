@@ -1,6 +1,7 @@
 package me.zhangjin.order.acl.messaging;
 
 import me.zhangjin.order.message.AuditMessage;
+import me.zhangjin.order.types.SendResult;
 
 // 类似 ExchangeRateService 服务的抽象，对各种中间件的抽象的目的是让业务代码不再依赖中间件的实现逻辑
 // 因为中间件通常需要有通用型，中间件的接口通常是 String 或 Byte[] 类型的，导致序列化/反序列化逻辑通常和业务逻辑混杂在一起，造成胶水代码

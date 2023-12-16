@@ -2,6 +2,7 @@ package me.zhangjin.order.handler;
 
 import me.zhangjin.order.acl.lock.DLock;
 import me.zhangjin.order.acl.lock.DistLock;
+import me.zhangjin.order.acl.lock.Locker;
 import me.zhangjin.order.acl.repository.OrderRepository;
 import me.zhangjin.order.domain.entity.Order;
 import me.zhangjin.order.domain.entity.event.AbstractEvent;
@@ -26,54 +27,28 @@ public class ProcessManagerRouter implements ApplicationContextAware {
     private OrderRepository orderRepository;
 
     @Autowired
-    private DistLock distLock;
+    private Locker locker;
 
     public void dispatcher(AbstractEvent event) {
         Order order = orderRepository.load(event.getOrderId());
+
+        // 找到对应的流程处理器
         AbstractProcessManager manager = getProcessManager(order);
 
         // 使用分布式锁
-        doLockDispatch(manager, event);
+        String lockKey = event.getOrderId().toString();
+        locker.run(lockKey, 10, event, manager::dispatch);
+
     }
 
     private AbstractProcessManager getProcessManager(Order order) {
-
         Map<String, AbstractProcessManager> managers = applicationContext.getBeansOfType(AbstractProcessManager.class);
         for (AbstractProcessManager manager : managers.values()) {
             if (manager.getProcessType() == order.getProcessType()) {
                 return manager;
             }
         }
-
         throw new RuntimeException(String.format("process manager not found !!,process type : %s", order.getProcessType()));
-    }
-
-    private void doLockDispatch(AbstractProcessManager manager, AbstractEvent event) {
-
-        // TODO 埋点锁失败场景
-
-        boolean locked = false;
-        DLock lock = null;
-        try {
-            lock = distLock.getLock(event.getOrderId().toString());
-            // 10s 超时
-            if (lock != null && (locked = lock.tryLock(10, TimeUnit.SECONDS)) == Boolean.TRUE) {
-                // 正常处理
-                manager.dispatch(event);
-            } else {
-                logger.error("getLock fail", event.getOrderId().toString());
-                //  降级，继续处理
-                manager.dispatch(event);
-            }
-        } catch (Exception ex) {
-            logger.error(ex.getMessage());
-            // 降级，继续处理
-            manager.dispatch(event);
-        } finally {
-            if (locked) {
-                lock.unlock();
-            }
-        }
     }
 
     @Override

@@ -4,6 +4,7 @@ package me.zhangjin.order.web;
 import me.zhangjin.order.command.SubmitOrderCommand;
 import me.zhangjin.order.dto.SubmitOrderDTO;
 import me.zhangjin.order.soa.SubmitOrderRequestType;
+import me.zhangjin.order.types.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import me.zhangjin.order.application.OrderService;

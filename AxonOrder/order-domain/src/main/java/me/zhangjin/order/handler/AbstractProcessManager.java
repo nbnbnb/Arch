@@ -36,25 +36,6 @@ public abstract class AbstractProcessManager implements InitializingBean {
         busWrapper.setBus(bus);
         busWrapper.setPriority(priority);
         busWrapper.setIgnoreException(ignoreException);
-        busWrapper.setRunAsync(Boolean.FALSE);
-
-        buses.add(busWrapper);
-    }
-
-    /**
-     * 注册异步执行器
-     *
-     * @param handler  执行器
-     * @param priority 优先级
-     */
-    protected void registerAsyncHandler(Object handler, Integer priority) {
-        BusWrapper busWrapper = new BusWrapper();
-        CommonMessageBus bus = new CommonMessageBus();
-        bus.subscribe(handler);
-        busWrapper.setBus(bus);
-        busWrapper.setPriority(priority);
-        busWrapper.setIgnoreException(Boolean.TRUE);
-        busWrapper.setRunAsync(Boolean.TRUE);
 
         buses.add(busWrapper);
     }
@@ -64,25 +45,15 @@ public abstract class AbstractProcessManager implements InitializingBean {
     public abstract ProcessType getProcessType();
 
     @Override
-    public void afterPropertiesSet() throws Exception {
+    public void afterPropertiesSet()  {
         initialize();
     }
 
     private static class BusWrapper {
-
         private Logger logger = LoggerFactory.getLogger(getClass());
         private Integer priority;
-        private Boolean runAsync;
         private Boolean ignoreException;
         private CommonMessageBus bus;
-
-        public Boolean getRunAsync() {
-            return runAsync;
-        }
-
-        public void setRunAsync(Boolean runAsync) {
-            this.runAsync = runAsync;
-        }
 
         public Integer getPriority() {
             return priority;
@@ -95,11 +66,7 @@ public abstract class AbstractProcessManager implements InitializingBean {
         @SuppressWarnings("unchecked")
         public void publish(Object message) {
             try {
-                if (runAsync) {
-                    bus.publishAsync(message);
-                } else {
-                    bus.publish(message);
-                }
+                bus.publish(message);
             } catch (Exception ex) {
                 logger.error(ex.getMessage());
                 if (!ignoreException) {

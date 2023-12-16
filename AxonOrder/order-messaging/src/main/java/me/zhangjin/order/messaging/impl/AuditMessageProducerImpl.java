@@ -2,6 +2,7 @@ package me.zhangjin.order.messaging.impl;
 
 import me.zhangjin.order.message.AuditMessage;
 import me.zhangjin.order.acl.messaging.AuditMessageProducer;
+import me.zhangjin.order.types.SendResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;

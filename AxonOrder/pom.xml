@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.alibaba.cola.demo.web</groupId>
-    <artifactId>demo-web-parent</artifactId>
+    <artifactId>order-web-parent</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>demo-cola</name>
+    <name>demo-axon</name>
 
     <properties>
         <maven.compiler.target>1.8</maven.compiler.target>
@@ -20,17 +21,19 @@
     </properties>
 
     <modules>
-        <module>demo-web-client</module>
-        <module>demo-web-adapter</module>
-        <module>demo-web-app</module>
-        <module>demo-web-domain</module>
-        <module>demo-web-infrastructure</module>
-        <module>start</module>
+        <module>order-application</module>
+        <module>order-domain</module>
+        <module>order-external</module>
+        <module>order-messaging</module>
+        <module>order-persistence</module>
+        <module>order-web</module>
+        <module>order-types</module>
+        <module>order-start</module>
     </modules>
 
     <dependencyManagement>
         <dependencies>
-            <!--COLA Components-->
+            <!-- COLA Components -->
             <dependency>
                 <groupId>com.alibaba.cola</groupId>
                 <artifactId>cola-component-domain-starter</artifactId>
@@ -51,36 +54,51 @@
                 <artifactId>cola-component-catchlog-starter</artifactId>
                 <version>${cola.components.version}</version>
             </dependency>
-            <!--COLA Components End-->
+            <!-- COLA Components End -->
 
-            <!--Project modules-->
+            <!-- Project modules -->
             <dependency>
                 <groupId>com.alibaba.cola.demo.web</groupId>
-                <artifactId>demo-web-adapter</artifactId>
+                <artifactId>order-application</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.alibaba.cola.demo.web</groupId>
-                <artifactId>demo-web-client</artifactId>
+                <artifactId>order-domain</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.alibaba.cola.demo.web</groupId>
-                <artifactId>demo-web-app</artifactId>
+                <artifactId>order-external</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.alibaba.cola.demo.web</groupId>
-                <artifactId>demo-web-domain</artifactId>
+                <artifactId>order-messaging</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.alibaba.cola.demo.web</groupId>
-                <artifactId>demo-web-infrastructure</artifactId>
+                <artifactId>order-persistence</artifactId>
                 <version>${project.version}</version>
             </dependency>
-            <!--Project modules End-->
-            <!--Spring Boot-->
+            <dependency>
+                <groupId>com.alibaba.cola.demo.web</groupId>
+                <artifactId>order-start</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.cola.demo.web</groupId>
+                <artifactId>order-types</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.cola.demo.web</groupId>
+                <artifactId>order-web</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <!-- Project modules End -->
+            <!-- Spring Boot -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
@@ -88,13 +106,9 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <dependency>
-                <groupId>org.mybatis.spring.boot</groupId>
-                <artifactId>mybatis-spring-boot-starter</artifactId>
-                <version>${mybatis-starter.version}</version>
-            </dependency>
-            <!--Spring Boot End-->
-            <!--Validation API-->
+            <!-- Spring Boot End -->
+
+            <!-- Validation API -->
             <dependency>
                 <groupId>javax.validation</groupId>
                 <artifactId>validation-api</artifactId>
@@ -115,7 +129,8 @@
                 <artifactId>javax.el</artifactId>
                 <version>2.2.6</version>
             </dependency>
-            <!--Validation API End -->
+            <!-- Validation API End -->
+
             <!-- Misc -->
             <dependency>
                 <groupId>org.reflections</groupId>
@@ -144,6 +159,7 @@
                 <scope>test</scope>
             </dependency>
             <!-- Misc End -->
+
         </dependencies>
     </dependencyManagement>
 

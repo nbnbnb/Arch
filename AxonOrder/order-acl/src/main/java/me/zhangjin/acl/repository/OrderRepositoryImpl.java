@@ -1,5 +1,6 @@
 package me.zhangjin.acl.repository;
 
+import me.zhangjin.acl.acl.logger.OrderLogger;
 import me.zhangjin.acl.acl.messaging.EventMessageProducer;
 import me.zhangjin.acl.acl.repository.OrderRepository;
 import me.zhangjin.acl.domain.entity.Order;
@@ -12,6 +13,9 @@ public class OrderRepositoryImpl implements OrderRepository {
 
     @Autowired
     private EventMessageProducer eventMessageProducer;
+
+    @Autowired
+    private OrderLogger orderLogger;
 
     @Override
     public Order load(Long orderId) {

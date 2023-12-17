@@ -2,6 +2,7 @@ package me.zhangjin.application.handler.linea.command;
 
 
 import me.zhangjin.domain.acl.repository.OrderRepository;
+import me.zhangjin.domain.acl.soa.RiskVerify;
 import me.zhangjin.domain.entity.Order;
 import me.zhangjin.domain.command.linea.SubmitOrderCommand;
 import net.engio.mbassy.listener.Handler;
@@ -13,6 +14,9 @@ public class SubmitOrderCommandHandler {
 
     @Autowired
     private OrderRepository repository;
+
+    @Autowired
+    private RiskVerify riskVerify;
 
     @Handler
     public void submitOrder(SubmitOrderCommand command) {
@@ -29,6 +33,7 @@ public class SubmitOrderCommandHandler {
 
         // 2. 执行业务逻辑（风控调用接口）
         // verify
+        riskVerify.riskCheck(command.getUid());
 
         // 3. 变更快照状态（内存）
         order.submitOrder(command);

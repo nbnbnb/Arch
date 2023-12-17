@@ -1,10 +1,11 @@
 package me.zhangjin.web.soa;
 
 
+import me.zhangjin.domain.command.linea.SubmitLineAOrderCommand;
+import me.zhangjin.types.ProcessType;
 import me.zhangjin.types.Result;
-import me.zhangjin.domain.command.linea.SubmitOrderCommand;
 import me.zhangjin.types.dto.SubmitOrderDTO;
-import me.zhangjin.types.soa.SubmitOrderRequestType;
+import me.zhangjin.types.soa.SubmitLineAOrderRequestType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import me.zhangjin.application.OrderApp;
@@ -20,9 +21,12 @@ public class OrderService {
     @Autowired
     private OrderApp orderApp;
 
-    public Result<Boolean> submitOrder(SubmitOrderRequestType submitOrderRequestType) {
+    public Result<Boolean> submitLineAOrder(SubmitLineAOrderRequestType submitOrderRequestType) {
 
-        SubmitOrderCommand submitOrderCommand = new SubmitOrderCommand();
+        SubmitLineAOrderCommand submitOrderCommand = new SubmitLineAOrderCommand();
+        submitOrderCommand.setOrderId(submitOrderRequestType.getOrderId());
+        submitOrderCommand.setUid(submitOrderRequestType.getUid());
+        submitOrderCommand.setProcessType(ProcessType.LineAProcess);
 
         SubmitOrderDTO res = orderApp.submitOrder(submitOrderCommand);
 

@@ -7,7 +7,9 @@ import me.zhangjin.types.ProcessType;
 
 @Getter
 @Setter
-public class SubmitOrderCommand extends DomainCommand {
+public class SubmitLineAOrderCommand extends DomainCommand {
+
+    private String uid;
 
     private ProcessType processType;
 

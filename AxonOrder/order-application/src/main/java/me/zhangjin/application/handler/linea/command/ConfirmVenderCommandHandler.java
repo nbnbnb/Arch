@@ -4,6 +4,7 @@ package me.zhangjin.application.handler.linea.command;
 import me.zhangjin.domain.command.linea.ConfirmVenderCommand;
 import me.zhangjin.domain.acl.repository.OrderRepository;
 import me.zhangjin.domain.entity.Order;
+import me.zhangjin.types.dto.ConfirmVenderDTO;
 import net.engio.mbassy.listener.Handler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -28,6 +29,12 @@ public class ConfirmVenderCommandHandler {
 
         // 4. 保存最新快照，并发送 MQ
         repository.save(order);
+
+        // 5. 设置返回结果
+        ConfirmVenderDTO res = new ConfirmVenderDTO();
+        res.setSuccess(true);
+        command.setReturnResult(res);
+
     }
 
 }

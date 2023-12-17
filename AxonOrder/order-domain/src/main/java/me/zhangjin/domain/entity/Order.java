@@ -31,9 +31,7 @@ public class Order extends RootEntity {
 
     private Long venderId;
 
-    // 1 自动完成
-    // 2 手动完成
-    private Integer completeType;
+    private CompleteType completeType;
 
     private LocalDateTime completeTime;
 

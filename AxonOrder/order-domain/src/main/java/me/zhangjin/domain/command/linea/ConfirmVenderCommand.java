@@ -4,17 +4,20 @@ import lombok.Getter;
 import lombok.Setter;
 import me.zhangjin.domain.command.common.DomainCommand;
 import me.zhangjin.domain.entity.Order;
+import me.zhangjin.types.ProcessType;
+import me.zhangjin.types.dto.ConfirmVenderDTO;
+import me.zhangjin.types.dto.SubmitLineAOrderDTO;
 
 @Getter
 @Setter
-public class ConfirmVenderCommand extends DomainCommand {
+public class ConfirmVenderCommand extends DomainCommand<ConfirmVenderDTO> {
 
     private String venderOrderCode;
 
     private Long venderId;
 
-    public ConfirmVenderCommand(Order order){
-        super(order.getOrderId(),order.getProcessType());
+    public ConfirmVenderCommand(Long orderId, ProcessType processType) {
+        super(orderId, processType);
     }
 
 }

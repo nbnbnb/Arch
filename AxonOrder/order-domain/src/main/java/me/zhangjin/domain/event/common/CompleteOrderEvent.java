@@ -2,6 +2,7 @@ package me.zhangjin.domain.event.common;
 
 import lombok.Getter;
 import lombok.Setter;
+import me.zhangjin.domain.entity.CompleteType;
 import me.zhangjin.domain.entity.Order;
 import me.zhangjin.domain.entity.OrderStatus;
 import me.zhangjin.types.ProcessType;
@@ -23,7 +24,7 @@ public class CompleteOrderEvent extends DomainEvent {
 
     // 1 自动完成
     // 2 手动完成
-    private Integer completeType;
+    private CompleteType completeType;
 
     private LocalDateTime completeTime;
 

@@ -39,6 +39,9 @@ public class LineAConfirmVenderCommandHandler {
         // 5. 设置返回结果
         LineAConfirmVenderDTO res = new LineAConfirmVenderDTO();
         res.setSuccess(true);
+        // 设置返回结果额外参数
+        res.setVenderId(command.getVenderId());
+        res.setVenderOrderCode(command.getVenderOrderCode());
         command.setReturnResult(res);
 
     }

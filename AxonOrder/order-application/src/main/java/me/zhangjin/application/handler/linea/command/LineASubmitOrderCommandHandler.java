@@ -21,7 +21,7 @@ public class LineASubmitOrderCommandHandler {
     private RiskVerify riskVerify;
 
     @Handler
-    public void submitLineAOrder(LineASubmitOrderCommand command) {
+    public void lineASubmitOrder(LineASubmitOrderCommand command) {
 
         // 使用方式：
         // 在 handle 方法中，执行业务逻辑处理

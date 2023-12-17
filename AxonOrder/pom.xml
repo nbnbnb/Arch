@@ -27,6 +27,7 @@
         <module>order-persistence</module>
         <module>order-web</module>
         <module>order-types</module>
+        <module>order-acl</module>
         <module>order-start</module>
     </modules>
 

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 public class CommonPayOrderCommandHandler {
 
     @Handler
-    public void completeOrder(CommonPayOrderCommand command) {
+    public void commonPayOrder(CommonPayOrderCommand command) {
 
     }
 

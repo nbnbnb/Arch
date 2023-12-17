@@ -17,7 +17,7 @@ public class CommonCompleteOrderCommandHandler {
     private OrderRepository repository;
 
     @Handler
-    public void completeOrder(CommonCompleteOrderCommand command) {
+    public void commonCompleteOrder(CommonCompleteOrderCommand command) {
 
         // 01 load
         Order order = repository.load(command.getOrderId());

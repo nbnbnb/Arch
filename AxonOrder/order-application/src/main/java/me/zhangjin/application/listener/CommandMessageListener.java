@@ -3,7 +3,7 @@ package me.zhangjin.application.listener;
 import com.alibaba.fastjson.JSON;
 import me.zhangjin.application.process.ProcessManagerRouter;
 import me.zhangjin.domain.acl.logger.OrderLogger;
-import me.zhangjin.domain.command.DomainCommand;
+import me.zhangjin.domain.command.common.DomainCommand;
 import org.reflections.Reflections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

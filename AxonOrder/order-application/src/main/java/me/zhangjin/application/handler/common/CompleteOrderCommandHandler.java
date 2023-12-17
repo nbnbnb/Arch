@@ -1,7 +1,7 @@
-package me.zhangjin.application.handler.linea.command;
+package me.zhangjin.application.handler.common;
 
 import me.zhangjin.domain.acl.repository.OrderRepository;
-import me.zhangjin.domain.command.CompleteOrderCommand;
+import me.zhangjin.domain.command.common.CompleteOrderCommand;
 import me.zhangjin.domain.entity.Order;
 import net.engio.mbassy.listener.Handler;
 import org.springframework.beans.factory.annotation.Autowired;

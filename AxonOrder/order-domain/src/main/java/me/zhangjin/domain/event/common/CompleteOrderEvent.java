@@ -1,4 +1,4 @@
-package me.zhangjin.domain.event;
+package me.zhangjin.domain.event.common;
 
 import lombok.Getter;
 import lombok.Setter;

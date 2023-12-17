@@ -1,7 +1,7 @@
 package me.zhangjin.application.bus;
 
 import me.zhangjin.domain.acl.lock.Locker;
-import me.zhangjin.domain.command.DomainCommand;
+import me.zhangjin.domain.command.common.DomainCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

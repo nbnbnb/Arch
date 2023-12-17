@@ -4,8 +4,8 @@ import com.alibaba.fastjson.JSON;
 import me.zhangjin.domain.acl.logger.OrderLogger;
 import me.zhangjin.domain.acl.messaging.MessageProducer;
 import me.zhangjin.domain.acl.messaging.MessageTopic;
-import me.zhangjin.domain.command.DomainCommand;
-import me.zhangjin.domain.event.DomainEvent;
+import me.zhangjin.domain.command.common.DomainCommand;
+import me.zhangjin.domain.event.common.DomainEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

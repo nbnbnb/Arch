@@ -1,19 +1,19 @@
 package me.zhangjin.domain.entity;
 
 import lombok.Getter;
-import me.zhangjin.domain.command.CompleteOrderCommand;
+import me.zhangjin.domain.command.common.CompleteOrderCommand;
 import me.zhangjin.domain.convert.CompleteOrderEventConvert;
 import me.zhangjin.domain.convert.ConfirmVenderEventConvert;
 import me.zhangjin.domain.convert.SendVenderEventConvert;
 import me.zhangjin.domain.convert.SubmitOrderEventConvert;
-import me.zhangjin.domain.event.CompleteOrderEvent;
-import me.zhangjin.domain.event.ConfirmVenderEvent;
-import me.zhangjin.domain.event.SendVenderEvent;
-import me.zhangjin.domain.event.SubmitOrderEvent;
+import me.zhangjin.domain.event.common.CompleteOrderEvent;
+import me.zhangjin.domain.event.linea.ConfirmVenderEvent;
+import me.zhangjin.domain.event.linea.SendVenderEvent;
+import me.zhangjin.domain.event.linea.SubmitOrderEvent;
 import me.zhangjin.types.ProcessType;
-import me.zhangjin.domain.command.ConfirmVenderCommand;
-import me.zhangjin.domain.command.SendVenderCommand;
-import me.zhangjin.domain.command.SubmitOrderCommand;
+import me.zhangjin.domain.command.linea.ConfirmVenderCommand;
+import me.zhangjin.domain.command.linea.SendVenderCommand;
+import me.zhangjin.domain.command.linea.SubmitOrderCommand;
 
 import java.time.LocalDateTime;
 

@@ -1,7 +1,7 @@
 package me.zhangjin.domain.acl.messaging;
 
-import me.zhangjin.domain.command.DomainCommand;
-import me.zhangjin.domain.event.DomainEvent;
+import me.zhangjin.domain.command.common.DomainCommand;
+import me.zhangjin.domain.event.common.DomainEvent;
 
 import java.time.LocalDateTime;
 import java.util.Map;

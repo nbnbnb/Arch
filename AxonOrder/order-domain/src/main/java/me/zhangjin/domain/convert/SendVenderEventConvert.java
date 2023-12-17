@@ -2,8 +2,8 @@ package me.zhangjin.domain.convert;
 
 
 import me.zhangjin.domain.entity.OrderStatus;
-import me.zhangjin.domain.event.SendVenderEvent;
-import me.zhangjin.domain.command.SendVenderCommand;
+import me.zhangjin.domain.event.linea.SendVenderEvent;
+import me.zhangjin.domain.command.linea.SendVenderCommand;
 
 
 public class SendVenderEventConvert {

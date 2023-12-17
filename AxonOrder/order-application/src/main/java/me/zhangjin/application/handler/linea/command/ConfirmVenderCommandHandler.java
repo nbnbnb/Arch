@@ -1,7 +1,7 @@
 package me.zhangjin.application.handler.linea.command;
 
 
-import me.zhangjin.domain.command.ConfirmVenderCommand;
+import me.zhangjin.domain.command.linea.ConfirmVenderCommand;
 import me.zhangjin.domain.acl.repository.OrderRepository;
 import me.zhangjin.domain.entity.Order;
 import net.engio.mbassy.listener.Handler;

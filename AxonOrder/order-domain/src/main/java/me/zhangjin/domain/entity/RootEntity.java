@@ -1,7 +1,7 @@
 package me.zhangjin.domain.entity;
 
 
-import me.zhangjin.domain.event.DomainEvent;
+import me.zhangjin.domain.event.common.DomainEvent;
 
 import java.lang.reflect.Method;
 import java.util.*;

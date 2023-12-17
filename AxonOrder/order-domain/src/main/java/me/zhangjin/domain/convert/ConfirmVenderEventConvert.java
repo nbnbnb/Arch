@@ -1,8 +1,8 @@
 package me.zhangjin.domain.convert;
 
 import me.zhangjin.domain.entity.OrderStatus;
-import me.zhangjin.domain.event.ConfirmVenderEvent;
-import me.zhangjin.domain.command.ConfirmVenderCommand;
+import me.zhangjin.domain.event.linea.ConfirmVenderEvent;
+import me.zhangjin.domain.command.linea.ConfirmVenderCommand;
 
 public class ConfirmVenderEventConvert {
 

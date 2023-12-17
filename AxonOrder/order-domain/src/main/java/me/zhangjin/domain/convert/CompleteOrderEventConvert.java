@@ -1,9 +1,8 @@
 package me.zhangjin.domain.convert;
 
-import me.zhangjin.domain.command.CompleteOrderCommand;
+import me.zhangjin.domain.command.common.CompleteOrderCommand;
 import me.zhangjin.domain.entity.OrderStatus;
-import me.zhangjin.domain.event.CompleteOrderEvent;
-import sun.util.resources.LocaleData;
+import me.zhangjin.domain.event.common.CompleteOrderEvent;
 
 import java.time.LocalDateTime;
 

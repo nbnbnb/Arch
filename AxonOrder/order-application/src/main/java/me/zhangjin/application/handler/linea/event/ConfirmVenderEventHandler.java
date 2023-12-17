@@ -1,12 +1,8 @@
 package me.zhangjin.application.handler.linea.event;
 
-import com.alibaba.fastjson.JSON;
 import me.zhangjin.domain.acl.messaging.MessageProducer;
-import me.zhangjin.domain.acl.messaging.MessageTopic;
-import me.zhangjin.domain.command.CompleteOrderCommand;
-import me.zhangjin.domain.command.DomainCommand;
-import me.zhangjin.domain.event.ConfirmVenderEvent;
-import me.zhangjin.domain.event.DomainEvent;
+import me.zhangjin.domain.command.common.CompleteOrderCommand;
+import me.zhangjin.domain.event.linea.ConfirmVenderEvent;
 import net.engio.mbassy.listener.Handler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

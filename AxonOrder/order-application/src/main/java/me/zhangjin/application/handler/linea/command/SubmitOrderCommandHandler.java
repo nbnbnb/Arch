@@ -3,7 +3,7 @@ package me.zhangjin.application.handler.linea.command;
 
 import me.zhangjin.domain.acl.repository.OrderRepository;
 import me.zhangjin.domain.entity.Order;
-import me.zhangjin.domain.command.SubmitOrderCommand;
+import me.zhangjin.domain.command.linea.SubmitOrderCommand;
 import net.engio.mbassy.listener.Handler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

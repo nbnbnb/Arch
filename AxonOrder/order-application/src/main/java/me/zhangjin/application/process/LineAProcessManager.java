@@ -1,6 +1,6 @@
 package me.zhangjin.application.process;
 
-import me.zhangjin.application.handler.linea.command.CompleteOrderCommandHandler;
+import me.zhangjin.application.handler.common.CompleteOrderCommandHandler;
 import me.zhangjin.application.handler.linea.command.ConfirmVenderCommandHandler;
 import me.zhangjin.application.handler.linea.command.SubmitOrderCommandHandler;
 import me.zhangjin.application.handler.linea.event.ConfirmVenderEventHandler;

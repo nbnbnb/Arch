@@ -2,9 +2,9 @@ package me.zhangjin.application.process;
 
 import me.zhangjin.domain.acl.lock.Locker;
 import me.zhangjin.domain.acl.repository.OrderRepository;
-import me.zhangjin.domain.command.DomainCommand;
+import me.zhangjin.domain.command.common.DomainCommand;
 import me.zhangjin.domain.entity.Order;
-import me.zhangjin.domain.event.DomainEvent;
+import me.zhangjin.domain.event.common.DomainEvent;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;

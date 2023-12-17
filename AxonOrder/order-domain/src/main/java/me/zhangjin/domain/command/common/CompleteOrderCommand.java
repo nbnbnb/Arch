@@ -1,4 +1,4 @@
-package me.zhangjin.domain.command;
+package me.zhangjin.domain.command.common;
 
 import lombok.Getter;
 import lombok.Setter;

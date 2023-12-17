@@ -1,4 +1,4 @@
-package me.zhangjin.acl.domain.entity.event;
+package me.zhangjin.acl.domain.event;
 
 import lombok.Getter;
 import lombok.Setter;

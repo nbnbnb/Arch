@@ -1,9 +1,10 @@
-package me.zhangjin.acl.handler.order;
+package me.zhangjin.acl.application.handler.order;
 
 
 import me.zhangjin.acl.acl.repository.OrderRepository;
 import me.zhangjin.acl.command.SubmitOrderCommand;
 import me.zhangjin.acl.domain.entity.Order;
+import net.engio.mbassy.listener.Handler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -13,7 +14,8 @@ public class SubmitOrderCommandHandler {
     @Autowired
     private OrderRepository repository;
 
-    public void handle(SubmitOrderCommand command) {
+    @Handler
+    public void submitOrder(SubmitOrderCommand command) {
 
         // 使用方式：
         // 在 handle 方法中，执行业务逻辑处理

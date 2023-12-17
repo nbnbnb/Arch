@@ -1,4 +1,4 @@
-package me.zhangjin.acl.domain.entity.event;
+package me.zhangjin.acl.domain.event;
 
 public abstract class AbstractEvent {
 

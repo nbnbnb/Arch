@@ -1,18 +1,24 @@
 package me.zhangjin.acl.repository;
 
+import com.alibaba.fastjson.JSON;
 import me.zhangjin.acl.acl.logger.OrderLogger;
-import me.zhangjin.acl.acl.messaging.EventMessageProducer;
+import me.zhangjin.acl.acl.messaging.MessageProducer;
 import me.zhangjin.acl.acl.repository.OrderRepository;
 import me.zhangjin.acl.domain.entity.Order;
-import me.zhangjin.acl.domain.entity.event.DomainEvent;
+import me.zhangjin.acl.domain.event.DomainEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Component
 public class OrderRepositoryImpl implements OrderRepository {
 
+    private static final String ORDER_DOMAIN_EVENT_TOPIC= "order.domain.event";
+
     @Autowired
-    private EventMessageProducer eventMessageProducer;
+    private MessageProducer messageProducer;
 
     @Autowired
     private OrderLogger orderLogger;
@@ -35,7 +41,7 @@ public class OrderRepositoryImpl implements OrderRepository {
         saveSnapshot(order);
 
         // 发送 Message
-        eventMessageProducer.send(currentEvent);
+        messageProducer.send(ORDER_DOMAIN_EVENT_TOPIC,buildMessage(currentEvent));
     }
 
     private Order loadSnapshot(Long orderId) {
@@ -52,5 +58,12 @@ public class OrderRepositoryImpl implements OrderRepository {
 
     private void saveEvent(DomainEvent domainEvent) {
         // 保存 Event 到 Mongo
+    }
+
+    private Map<String,Object> buildMessage(DomainEvent domainEvent) {
+        Map<String, Object> message = new HashMap<>();
+        message.put("orderId", domainEvent.getOrderId());
+        message.put("content", JSON.toJSON(domainEvent));
+        return message;
     }
 }

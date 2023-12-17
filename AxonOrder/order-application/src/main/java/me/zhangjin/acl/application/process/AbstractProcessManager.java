@@ -1,4 +1,4 @@
-package me.zhangjin.acl.handler;
+package me.zhangjin.acl.application.process;
 
 import me.zhangjin.acl.bus.CommonMessageBus;
 import me.zhangjin.acl.types.ProcessType;

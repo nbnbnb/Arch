@@ -1,15 +1,11 @@
-package me.zhangjin.acl.messing;
+package me.zhangjin.acl.application.listener;
 
 import com.alibaba.fastjson.JSON;
-import io.micrometer.common.util.StringUtils;
 import me.zhangjin.acl.acl.logger.OrderLogger;
-import me.zhangjin.acl.acl.messaging.EventMessageConsumer;
-import me.zhangjin.acl.domain.entity.event.AbstractEvent;
-import me.zhangjin.acl.domain.entity.event.DomainEvent;
-import me.zhangjin.acl.handler.ProcessManagerRouter;
+import me.zhangjin.acl.application.process.ProcessManagerRouter;
+import me.zhangjin.acl.domain.event.DomainEvent;
 import org.reflections.Reflections;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationEvent;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
@@ -17,7 +13,7 @@ import java.util.Map;
 import java.util.Set;
 
 @Component
-public class EventMessageConsumerImpl implements EventMessageConsumer {
+public class EventMessageListener {
 
     private static Map<String, Class<? extends DomainEvent>> typeMaps = new HashMap<>(16);
 
@@ -35,7 +31,6 @@ public class EventMessageConsumerImpl implements EventMessageConsumer {
     @Autowired
     private ProcessManagerRouter managerRouter;
 
-    @Override
     public void on(String content,String eventType) {
         try {
             DomainEvent domainEvent = resolve(eventType, content);

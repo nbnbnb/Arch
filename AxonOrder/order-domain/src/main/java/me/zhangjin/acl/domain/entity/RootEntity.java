@@ -1,9 +1,11 @@
-package me.zhangjin.acl.domain.entity.event;
+package me.zhangjin.acl.domain.entity;
+
+import me.zhangjin.acl.domain.event.DomainEvent;
 
 import java.lang.reflect.Method;
 import java.util.*;
 
-public abstract class EventSourceRootEntity {
+public abstract class RootEntity {
 
     private static final String MUTATOR_METHOD_NAME = "when";
 
@@ -47,7 +49,7 @@ public abstract class EventSourceRootEntity {
 
     private void mutateWhen(DomainEvent domainEvent) {
 
-        Class<? extends EventSourceRootEntity> rootType = this.getClass();
+        Class<? extends RootEntity> rootType = this.getClass();
         Class<? extends DomainEvent> eventType = domainEvent.getClass();
         String key = rootType.getName() + ":" + eventType.getName();
         Method mutatorMethod = mutatorMethods.get(key);
@@ -64,7 +66,7 @@ public abstract class EventSourceRootEntity {
 
     }
 
-    private Method cacheMutatorMethodFor(String aKey, Class<? extends EventSourceRootEntity> rootType, Class<? extends DomainEvent> eventType) {
+    private Method cacheMutatorMethodFor(String aKey, Class<? extends RootEntity> rootType, Class<? extends DomainEvent> eventType) {
 
         // 使用全局锁，运行时缓存
         // 也可以在类初始化时缓存

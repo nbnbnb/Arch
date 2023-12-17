@@ -2,13 +2,12 @@ package me.zhangjin.acl.domain.entity;
 
 import lombok.Getter;
 import me.zhangjin.acl.command.SubmitOrderCommand;
-import me.zhangjin.acl.domain.entity.convert.SubmitOrderEventConvert;
-import me.zhangjin.acl.domain.entity.event.SubmitOrderEvent;
-import me.zhangjin.acl.domain.entity.event.EventSourceRootEntity;
+import me.zhangjin.acl.domain.convert.SubmitOrderEventConvert;
+import me.zhangjin.acl.domain.event.SubmitOrderEvent;
 import me.zhangjin.acl.types.ProcessType;
 
 @Getter
-public class Order extends EventSourceRootEntity {
+public class Order extends RootEntity {
 
     private Integer orderStatus;
 

@@ -1,7 +1,7 @@
-package me.zhangjin.acl.domain.entity.convert;
+package me.zhangjin.acl.domain.convert;
 
 import me.zhangjin.acl.command.SubmitOrderCommand;
-import me.zhangjin.acl.domain.entity.event.SubmitOrderEvent;
+import me.zhangjin.acl.domain.event.SubmitOrderEvent;
 
 public class SubmitOrderEventConvert {
     public static SubmitOrderEvent convert(SubmitOrderCommand command){

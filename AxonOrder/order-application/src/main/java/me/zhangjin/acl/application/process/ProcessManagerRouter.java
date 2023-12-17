@@ -1,11 +1,9 @@
-package me.zhangjin.acl.handler;
+package me.zhangjin.acl.application.process;
 
 import me.zhangjin.acl.acl.lock.Locker;
 import me.zhangjin.acl.acl.repository.OrderRepository;
 import me.zhangjin.acl.domain.entity.Order;
-import me.zhangjin.acl.domain.entity.event.AbstractEvent;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import me.zhangjin.acl.domain.event.AbstractEvent;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -17,7 +15,6 @@ import java.util.Map;
 @Component
 public class ProcessManagerRouter implements ApplicationContextAware {
 
-    private Logger logger = LoggerFactory.getLogger(getClass());
     private ApplicationContext applicationContext;
 
     @Autowired

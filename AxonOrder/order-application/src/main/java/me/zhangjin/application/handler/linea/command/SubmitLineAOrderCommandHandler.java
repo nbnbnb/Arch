@@ -3,9 +3,9 @@ package me.zhangjin.application.handler.linea.command;
 
 import me.zhangjin.domain.acl.repository.OrderRepository;
 import me.zhangjin.domain.acl.soa.RiskVerify;
-import me.zhangjin.domain.command.linea.SubmitLineAOrderCommand;
+import me.zhangjin.domain.command.linea.LineASubmitOrderCommand;
 import me.zhangjin.domain.entity.Order;
-import me.zhangjin.types.dto.SubmitLineAOrderDTO;
+import me.zhangjin.types.dto.linea.LineASubmitOrderDTO;
 import me.zhangjin.types.exception.BizExceptioin;
 import net.engio.mbassy.listener.Handler;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ public class SubmitLineAOrderCommandHandler {
     private RiskVerify riskVerify;
 
     @Handler
-    public void submitLineAOrder(SubmitLineAOrderCommand command) {
+    public void submitLineAOrder(LineASubmitOrderCommand command) {
 
         // 使用方式：
         // 在 handle 方法中，执行业务逻辑处理
@@ -54,7 +54,7 @@ public class SubmitLineAOrderCommandHandler {
         repository.save(order);
 
         // 5. 设置返回值
-        SubmitLineAOrderDTO res = new SubmitLineAOrderDTO();
+        LineASubmitOrderDTO res = new LineASubmitOrderDTO();
         res.setSuccess(true);
         command.setReturnResult(res);
 

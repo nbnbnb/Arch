@@ -1,19 +1,19 @@
 package me.zhangjin.domain.entity;
 
 import lombok.Getter;
-import me.zhangjin.domain.command.common.CompleteOrderCommand;
-import me.zhangjin.domain.command.linea.SubmitLineAOrderCommand;
+import me.zhangjin.domain.command.common.CommonCompleteOrderCommand;
+import me.zhangjin.domain.command.linea.LineASubmitOrderCommand;
 import me.zhangjin.domain.convert.CompleteOrderEventConvert;
 import me.zhangjin.domain.convert.ConfirmVenderEventConvert;
 import me.zhangjin.domain.convert.SendVenderEventConvert;
 import me.zhangjin.domain.convert.SubmitOrderEventConvert;
-import me.zhangjin.domain.event.common.CompleteOrderEvent;
-import me.zhangjin.domain.event.linea.ConfirmVenderEvent;
-import me.zhangjin.domain.event.linea.SendVenderEvent;
-import me.zhangjin.domain.event.linea.SubmitOrderEvent;
+import me.zhangjin.domain.event.common.CommonCompleteOrderEvent;
+import me.zhangjin.domain.event.linea.LineAConfirmVenderEvent;
+import me.zhangjin.domain.event.linea.LineASendVenderEvent;
+import me.zhangjin.domain.event.linea.LineASubmitOrderEvent;
 import me.zhangjin.types.ProcessType;
-import me.zhangjin.domain.command.linea.ConfirmVenderCommand;
-import me.zhangjin.domain.command.linea.SendVenderCommand;
+import me.zhangjin.domain.command.linea.LineAConfirmVenderCommand;
+import me.zhangjin.domain.command.linea.LineASendVenderCommand;
 
 import java.time.LocalDateTime;
 
@@ -43,21 +43,21 @@ public class Order extends RootEntity {
     // xinfo
 
     // region 通过公共方法，修改 Entity 状态，方法名有明确的业务含义
-    public void submitOrder(SubmitLineAOrderCommand command) {
+    public void submitOrder(LineASubmitOrderCommand command) {
         // 将 Command 转换为 Event
         // 修改内存中的状态（调用符合签名的 when 方法）
         apply(SubmitOrderEventConvert.convert(command));
     }
 
-    public void sendVender(SendVenderCommand command) {
+    public void sendVender(LineASendVenderCommand command) {
         apply(SendVenderEventConvert.convert(command));
     }
 
-    public void confirmVender(ConfirmVenderCommand command) {
+    public void confirmVender(LineAConfirmVenderCommand command) {
         apply(ConfirmVenderEventConvert.convert(command));
     }
 
-    public void completeOrder(CompleteOrderCommand command) {
+    public void completeOrder(CommonCompleteOrderCommand command) {
         apply(CompleteOrderEventConvert.convert(command));
     }
 
@@ -65,7 +65,7 @@ public class Order extends RootEntity {
 
     // region when 处理方法：强制要求 - 所有对 Order 数据的修改，都在 when 方法中执行
 
-    private void when(SubmitOrderEvent event) {
+    private void when(LineASubmitOrderEvent event) {
 
         // Order 初始化
 
@@ -79,19 +79,19 @@ public class Order extends RootEntity {
 
     }
 
-    private void when(SendVenderEvent event) {
+    private void when(LineASendVenderEvent event) {
         // 设置订单状态为已下单
         this.orderStatus = event.getOrderStatus();
     }
 
-    private void when(ConfirmVenderEvent event) {
+    private void when(LineAConfirmVenderEvent event) {
         // 设置订单状态为已下单
         this.orderStatus = event.getOrderStatus();
         this.venderId = event.getVenderId();
         this.venderOrderCode = event.getVenderOrderCode();
     }
 
-    private void when(CompleteOrderEvent event) {
+    private void when(CommonCompleteOrderEvent event) {
         // 设置为完成状态
         this.orderStatus = event.getOrderStatus();
         this.completeTime = event.getCompleteTime();

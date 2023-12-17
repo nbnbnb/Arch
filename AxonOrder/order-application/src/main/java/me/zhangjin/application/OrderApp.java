@@ -1,8 +1,8 @@
 package me.zhangjin.application;
 
 
-import me.zhangjin.domain.command.linea.SubmitLineAOrderCommand;
-import me.zhangjin.types.dto.SubmitLineAOrderDTO;
+import me.zhangjin.domain.command.linea.LineASubmitOrderCommand;
+import me.zhangjin.types.dto.linea.LineASubmitOrderDTO;
 
 /**
  * <p> 应用服务 编排流程
@@ -11,5 +11,5 @@ import me.zhangjin.types.dto.SubmitLineAOrderDTO;
 public interface OrderApp {
     // Application 层的接口入参使用 Command/Query/Event
     // 响应 DTO
-    SubmitLineAOrderDTO submitLineAOrder(SubmitLineAOrderCommand submitLineAOrderCommand);
+    LineASubmitOrderDTO lineASubmitOrder(LineASubmitOrderCommand submitLineAOrderCommand);
 }

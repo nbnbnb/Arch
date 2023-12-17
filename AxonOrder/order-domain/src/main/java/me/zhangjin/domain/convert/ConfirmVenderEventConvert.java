@@ -1,13 +1,13 @@
 package me.zhangjin.domain.convert;
 
 import me.zhangjin.domain.entity.OrderStatus;
-import me.zhangjin.domain.event.linea.ConfirmVenderEvent;
-import me.zhangjin.domain.command.linea.ConfirmVenderCommand;
+import me.zhangjin.domain.event.linea.LineAConfirmVenderEvent;
+import me.zhangjin.domain.command.linea.LineAConfirmVenderCommand;
 
 public class ConfirmVenderEventConvert {
 
-    public static ConfirmVenderEvent convert(ConfirmVenderCommand command) {
-        ConfirmVenderEvent confirmVenderEvent = new ConfirmVenderEvent();
+    public static LineAConfirmVenderEvent convert(LineAConfirmVenderCommand command) {
+        LineAConfirmVenderEvent confirmVenderEvent = new LineAConfirmVenderEvent();
         confirmVenderEvent.setVenderId(command.getVenderId());
         confirmVenderEvent.setVenderOrderCode(command.getVenderOrderCode());
         confirmVenderEvent.setOrderStatus(OrderStatus.ConfirmOrder);

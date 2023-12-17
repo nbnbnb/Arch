@@ -2,10 +2,10 @@ package me.zhangjin.application.handler.linea.event;
 
 import me.zhangjin.domain.acl.messaging.MessageProducer;
 import me.zhangjin.domain.acl.repository.OrderRepository;
-import me.zhangjin.domain.command.common.CompleteOrderCommand;
+import me.zhangjin.domain.command.common.CommonCompleteOrderCommand;
 import me.zhangjin.domain.entity.CompleteType;
 import me.zhangjin.domain.entity.Order;
-import me.zhangjin.domain.event.linea.ConfirmVenderEvent;
+import me.zhangjin.domain.event.linea.LineAConfirmVenderEvent;
 import net.engio.mbassy.listener.Handler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -24,7 +24,7 @@ public class ConfirmVenderEventHandler {
     private OrderRepository repository;
 
     @Handler
-    public void sendSMS(ConfirmVenderEvent event) {
+    public void sendSMS(LineAConfirmVenderEvent event) {
         Map<String, String> data = new HashMap<>();
         data.put("phone", "13888888888");
         data.put("content", "test test");
@@ -33,13 +33,13 @@ public class ConfirmVenderEventHandler {
     }
 
     @Handler
-    public void sendDelayCompleteMQ(ConfirmVenderEvent event) {
+    public void sendDelayCompleteMQ(LineAConfirmVenderEvent event) {
 
         Order order = repository.load(event.getOrderId());
 
         LocalDateTime delayTime = LocalDateTime.now().minusDays(1);
 
-        CompleteOrderCommand autoCompleteCommand = new CompleteOrderCommand();
+        CommonCompleteOrderCommand autoCompleteCommand = new CommonCompleteOrderCommand();
         autoCompleteCommand.setCompleteType(CompleteType.Auto);
         autoCompleteCommand.setOrderId(order.getOrderId());
         autoCompleteCommand.setProcessType(order.getProcessType());

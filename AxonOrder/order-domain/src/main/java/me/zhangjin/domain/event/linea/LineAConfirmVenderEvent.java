@@ -4,16 +4,19 @@ import lombok.Getter;
 import lombok.Setter;
 import me.zhangjin.domain.entity.OrderStatus;
 import me.zhangjin.domain.event.common.DomainEvent;
-import me.zhangjin.types.ProcessType;
 
-@Setter
 @Getter
-public class SubmitOrderEvent extends DomainEvent {
+@Setter
+public class LineAConfirmVenderEvent extends DomainEvent {
 
     @Override
     public String getDesc() {
-        return "Do SubmitOrderEvent";
+        return "Do LineAConfirmVenderEvent";
     }
+
+    private String venderOrderCode;
+
+    private Long venderId;
 
     private OrderStatus orderStatus;
 }

@@ -1,4 +1,4 @@
-package me.zhangjin.types.dto;
+package me.zhangjin.types.dto.common;
 
 import lombok.Getter;
 import lombok.Setter;

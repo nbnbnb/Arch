@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class SubmitLineAOrderRequestType {
+public class LineASubmitOrderRequestType {
 
     private Long orderId;
 

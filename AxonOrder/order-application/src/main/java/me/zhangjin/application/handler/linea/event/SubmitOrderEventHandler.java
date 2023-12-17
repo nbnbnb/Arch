@@ -4,8 +4,8 @@ import me.zhangjin.domain.acl.messaging.MessageProducer;
 import me.zhangjin.domain.acl.repository.OrderRepository;
 import me.zhangjin.domain.entity.Order;
 import me.zhangjin.domain.entity.OrderStatus;
-import me.zhangjin.domain.event.linea.SubmitOrderEvent;
-import me.zhangjin.domain.command.linea.SendVenderCommand;
+import me.zhangjin.domain.event.linea.LineASubmitOrderEvent;
+import me.zhangjin.domain.command.linea.LineASendVenderCommand;
 import me.zhangjin.types.exception.BizExceptioin;
 import net.engio.mbassy.listener.Handler;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +42,7 @@ public class SubmitOrderEventHandler {
     // 保证 Prcocess 服务的高可用性
 
     @Handler
-    public void sendSMS(SubmitOrderEvent event) {
+    public void sendSMS(LineASubmitOrderEvent event) {
         Map<String, String> data = new HashMap<>();
         data.put("phone", "13888888888");
         data.put("content", "test test");
@@ -51,7 +51,7 @@ public class SubmitOrderEventHandler {
     }
 
     @Handler
-    public void sendEmail(SubmitOrderEvent event) {
+    public void sendEmail(LineASubmitOrderEvent event) {
         Map<String, String> data = new HashMap<>();
         data.put("email", "abc@abc.com");
         data.put("content", "test test test");
@@ -60,7 +60,7 @@ public class SubmitOrderEventHandler {
     }
 
     @Handler
-    public void sendVender(SubmitOrderEvent event) {
+    public void sendVender(LineASubmitOrderEvent event) {
 
         // 01 load
         Order order = repository.load(event.getOrderId());
@@ -80,14 +80,14 @@ public class SubmitOrderEventHandler {
         messageProducer.sendVendor(data);
 
         // 04 变更快照状态（内存）
-        SendVenderCommand sendVenderCommand = new SendVenderCommand();
+        LineASendVenderCommand sendVenderCommand = new LineASendVenderCommand();
         sendVenderCommand.setOrderId(order.getOrderId());
         sendVenderCommand.setProcessType(order.getProcessType());
         order.sendVender(sendVenderCommand);
 
 
         // 05. 保存最新快照，并发送 MQ
-        // 发送 SendVenderEvent 到 MQ
+        // 发送 SendLineAVenderEvent 到 MQ
         repository.save(order);
     }
 

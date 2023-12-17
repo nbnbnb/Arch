@@ -1,6 +1,6 @@
 package me.zhangjin.application.handler.common;
 
-import me.zhangjin.domain.command.common.PayOrderCommand;
+import me.zhangjin.domain.command.common.CommonPayOrderCommand;
 import net.engio.mbassy.listener.Handler;
 import org.springframework.stereotype.Component;
 
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 public class PayOrderCommandHandler {
 
     @Handler
-    public void completeOrder(PayOrderCommand command) {
+    public void completeOrder(CommonPayOrderCommand command) {
 
     }
 

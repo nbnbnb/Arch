@@ -3,19 +3,17 @@ package me.zhangjin.domain.event.common;
 import lombok.Getter;
 import lombok.Setter;
 import me.zhangjin.domain.entity.CompleteType;
-import me.zhangjin.domain.entity.Order;
 import me.zhangjin.domain.entity.OrderStatus;
-import me.zhangjin.types.ProcessType;
 
 import java.time.LocalDateTime;
 
 @Getter
 @Setter
-public class CompleteOrderEvent extends DomainEvent {
+public class CommonCompleteOrderEvent extends DomainEvent {
 
     @Override
     public String getDesc() {
-        return "Do CompleteOrderEvent";
+        return "Do CommonCompleteOrderEvent";
     }
 
     // 1 自动完成

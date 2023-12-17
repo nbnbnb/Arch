@@ -1,8 +1,8 @@
 package me.zhangjin.application;
 
 import me.zhangjin.application.process.ProcessManagerRouter;
-import me.zhangjin.domain.command.linea.SubmitLineAOrderCommand;
-import me.zhangjin.types.dto.SubmitLineAOrderDTO;
+import me.zhangjin.domain.command.linea.LineASubmitOrderCommand;
+import me.zhangjin.types.dto.linea.LineASubmitOrderDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -13,7 +13,7 @@ public class OrderAppImpl implements OrderApp {
     private ProcessManagerRouter managerRouter;
 
     @Override
-    public SubmitLineAOrderDTO submitLineAOrder(SubmitLineAOrderCommand submitLineAOrderCommand) {
+    public LineASubmitOrderDTO lineASubmitOrder(LineASubmitOrderCommand submitLineAOrderCommand) {
 
         // 由于 dispatcher 可能有多个 handler 可以处理，就有可能多个返回值
         managerRouter.dispatcher(submitLineAOrderCommand);

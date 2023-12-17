@@ -1,11 +1,11 @@
 package me.zhangjin.application.handler.linea.command;
 
 
-import me.zhangjin.domain.command.linea.ConfirmVenderCommand;
+import me.zhangjin.domain.command.linea.LineAConfirmVenderCommand;
 import me.zhangjin.domain.acl.repository.OrderRepository;
 import me.zhangjin.domain.entity.Order;
 import me.zhangjin.domain.entity.OrderStatus;
-import me.zhangjin.types.dto.ConfirmVenderDTO;
+import me.zhangjin.types.dto.linea.LineAConfirmVenderDTO;
 import me.zhangjin.types.exception.BizExceptioin;
 import net.engio.mbassy.listener.Handler;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ public class ConfirmVenderCommandHandler {
     private OrderRepository repository;
 
     @Handler
-    public void confirmVender(ConfirmVenderCommand command) {
+    public void confirmVender(LineAConfirmVenderCommand command) {
         // 01 load
         Order order = repository.load(command.getOrderId());
 
@@ -37,7 +37,7 @@ public class ConfirmVenderCommandHandler {
         repository.save(order);
 
         // 5. 设置返回结果
-        ConfirmVenderDTO res = new ConfirmVenderDTO();
+        LineAConfirmVenderDTO res = new LineAConfirmVenderDTO();
         res.setSuccess(true);
         command.setReturnResult(res);
 

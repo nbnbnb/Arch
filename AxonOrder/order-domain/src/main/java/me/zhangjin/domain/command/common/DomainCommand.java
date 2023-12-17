@@ -3,7 +3,7 @@ package me.zhangjin.domain.command.common;
 import lombok.Getter;
 import lombok.Setter;
 import me.zhangjin.types.ProcessType;
-import me.zhangjin.types.dto.BaseDTO;
+import me.zhangjin.types.dto.common.BaseDTO;
 
 @Getter
 @Setter

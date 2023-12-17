@@ -1,10 +1,10 @@
 package me.zhangjin.application.handler.common;
 
 import me.zhangjin.domain.acl.repository.OrderRepository;
-import me.zhangjin.domain.command.common.CompleteOrderCommand;
+import me.zhangjin.domain.command.common.CommonCompleteOrderCommand;
 import me.zhangjin.domain.entity.Order;
 import me.zhangjin.domain.entity.OrderStatus;
-import me.zhangjin.types.dto.CompleteOrderDTO;
+import me.zhangjin.types.dto.common.CommonCompleteOrderDTO;
 import me.zhangjin.types.exception.BizExceptioin;
 import net.engio.mbassy.listener.Handler;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ public class CompleteOrderCommandHandler {
     private OrderRepository repository;
 
     @Handler
-    public void completeOrder(CompleteOrderCommand command) {
+    public void completeOrder(CommonCompleteOrderCommand command) {
 
         // 01 load
         Order order = repository.load(command.getOrderId());
@@ -39,7 +39,7 @@ public class CompleteOrderCommandHandler {
         repository.save(order);
 
         // 05. 设置返回值
-        CompleteOrderDTO res = new CompleteOrderDTO();
+        CommonCompleteOrderDTO res = new CommonCompleteOrderDTO();
         res.setSuccess(true);
         command.setReturnResult(res);
     }

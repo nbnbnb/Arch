@@ -12,10 +12,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * 接收外部消息
+ * 例如 支付回调/供应商回调
+ * 然后将其反序列化为 DomainCommand ，发送到 Message Bus 中执行
+ */
 
-// 接收外部消息
-// 例如 支付回调/供应商回调
-// 然后将其反序列化为 DomainCommand ，发送到 MessageBus 中执行
 @Component
 public class CommandMessageListener {
 
@@ -39,6 +41,7 @@ public class CommandMessageListener {
         try {
             DomainCommand domainCommand = resolve(eventType, content);
             if (domainCommand != null) {
+                // 发送到 Message Bus 中执行
                 managerRouter.dispatcher(domainCommand);
             } else {
                 orderLogger.error("domaincommand is empty: %s %s", content, eventType);

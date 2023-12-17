@@ -28,7 +28,6 @@ public class ProcessManagerRouter implements ApplicationContextAware {
         // 使用分布式锁
         String lockKey = event.getOrderId().toString();
         locker.run(lockKey, 10, event, manager::dispatch);
-
     }
 
     public void dispatcher(DomainCommand command) {
@@ -38,7 +37,6 @@ public class ProcessManagerRouter implements ApplicationContextAware {
         // 使用分布式锁
         String lockKey = command.getOrderId().toString();
         locker.run(lockKey, 10, command, manager::dispatch);
-
     }
 
     private AbstractProcessManager getProcessManager(ProcessType processType) {

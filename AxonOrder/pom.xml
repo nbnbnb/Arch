@@ -72,7 +72,7 @@
                 <scope>import</scope>
             </dependency>
             <!-- Spring Boot End -->
-            
+
             <!-- Misc -->
             <dependency>
                 <groupId>org.reflections</groupId>

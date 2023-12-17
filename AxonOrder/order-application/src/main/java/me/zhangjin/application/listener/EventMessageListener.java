@@ -12,6 +12,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * 监听 Process 服务自身发送的 DomainEvent
+ */
 @Component
 public class EventMessageListener {
 

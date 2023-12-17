@@ -1,6 +1,8 @@
 package me.zhangjin.domain.entity;
 
 
+import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import me.zhangjin.domain.event.common.DomainEvent;
 
 import java.lang.reflect.Method;
@@ -12,6 +14,9 @@ public abstract class RootEntity {
 
     private static Map<String, Method> mutatorMethods = new HashMap<>();
 
+    // 不序列化
+    @JsonIgnore
+    @JSONField(serialize = false)
     private DomainEvent currentEvent;
 
     public DomainEvent getCurrentEvent() {

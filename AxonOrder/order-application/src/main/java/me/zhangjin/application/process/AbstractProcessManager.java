@@ -1,16 +1,24 @@
 package me.zhangjin.application.process;
 
 
+import me.zhangjin.domain.acl.logger.OrderLogger;
 import me.zhangjin.types.ProcessType;
 import net.engio.mbassy.bus.IMessagePublication;
 import net.engio.mbassy.bus.MBassador;
+import net.engio.mbassy.bus.error.IPublicationErrorHandler;
+import net.engio.mbassy.bus.error.PublicationError;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContextAware;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
 public abstract class AbstractProcessManager implements InitializingBean {
+
+    @Autowired
+    private OrderLogger orderLogger;
 
     private List<BusWrapper> buses;
 
@@ -31,7 +39,7 @@ public abstract class AbstractProcessManager implements InitializingBean {
      */
     protected void registerHandler(Object handler, Integer priority, Boolean ignoreException) {
         BusWrapper busWrapper = new BusWrapper();
-        CommonMessageBus bus = new CommonMessageBus();
+        CommonMessageBus bus = new CommonMessageBus(orderLogger);
         bus.subscribe(handler);
         busWrapper.setBus(bus);
         busWrapper.setPriority(priority);
@@ -84,10 +92,12 @@ public abstract class AbstractProcessManager implements InitializingBean {
 
     private static class CommonMessageBus<T> {
 
+        private OrderLogger orderLogger;
         private MBassador<T> bus;
 
-        public CommonMessageBus() {
-            bus = new MBassador<>();
+        public CommonMessageBus(OrderLogger orderLogger) {
+            this.orderLogger = orderLogger;
+            this.bus = new MBassador<>(ErrorHandler.getInstance(orderLogger));
         }
 
         public void subscribe(Object listener) {
@@ -98,6 +108,26 @@ public abstract class AbstractProcessManager implements InitializingBean {
             bus.publish(message);
         }
     }
+
+    private static class ErrorHandler implements IPublicationErrorHandler {
+
+        private final OrderLogger orderLogger;
+
+        private ErrorHandler(OrderLogger orderLogger) {
+            this.orderLogger = orderLogger;
+        }
+
+        @Override
+        public void handleError(PublicationError error) {
+            orderLogger.error("message bus error", error.getMessage());
+        }
+
+        public static ErrorHandler getInstance(OrderLogger orderLogger) {
+            return new ErrorHandler(orderLogger);
+        }
+
+    }
+
 
 }
 

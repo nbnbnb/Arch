@@ -14,15 +14,17 @@
 
     <dependencies>
 
-
+        <dependency>
+            <groupId>com.alibaba.cola.demo.web</groupId>
+            <artifactId>order-acl</artifactId>
+        </dependency>
         <dependency>
             <groupId>com.alibaba.cola.demo.web</groupId>
             <artifactId>order-domain</artifactId>
         </dependency>
-
         <dependency>
             <groupId>com.alibaba.cola.demo.web</groupId>
-            <artifactId>order-persistence</artifactId>
+            <artifactId>order-acl</artifactId>
         </dependency>
 
         <dependency>

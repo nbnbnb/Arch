@@ -22,9 +22,6 @@
     <modules>
         <module>order-application</module>
         <module>order-domain</module>
-        <module>order-external</module>
-        <module>order-messaging</module>
-        <module>order-persistence</module>
         <module>order-web</module>
         <module>order-types</module>
         <module>order-acl</module>
@@ -47,17 +44,7 @@
             </dependency>
             <dependency>
                 <groupId>com.alibaba.cola.demo.web</groupId>
-                <artifactId>order-external</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.alibaba.cola.demo.web</groupId>
-                <artifactId>order-messaging</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.alibaba.cola.demo.web</groupId>
-                <artifactId>order-persistence</artifactId>
+                <artifactId>order-acl</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
@@ -86,28 +73,6 @@
             </dependency>
             <!-- Spring Boot End -->
 
-            <!-- Validation API -->
-            <dependency>
-                <groupId>javax.validation</groupId>
-                <artifactId>validation-api</artifactId>
-                <version>2.0.0.Final</version>
-            </dependency>
-            <dependency>
-                <groupId>org.hibernate.validator</groupId>
-                <artifactId>hibernate-validator</artifactId>
-                <version>6.0.22.Final</version>
-            </dependency>
-            <dependency>
-                <groupId>javax.el</groupId>
-                <artifactId>javax.el-api</artifactId>
-                <version>3.0.0</version>
-            </dependency>
-            <dependency>
-                <groupId>org.glassfish.web</groupId>
-                <artifactId>javax.el</artifactId>
-                <version>2.2.6</version>
-            </dependency>
-            <!-- Validation API End -->
 
             <!-- Misc -->
             <dependency>

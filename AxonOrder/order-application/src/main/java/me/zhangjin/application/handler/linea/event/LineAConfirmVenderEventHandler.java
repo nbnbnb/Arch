@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Component
-public class ConfirmVenderEventHandler {
+public class LineAConfirmVenderEventHandler {
 
     @Autowired
     private MessageProducer messageProducer;

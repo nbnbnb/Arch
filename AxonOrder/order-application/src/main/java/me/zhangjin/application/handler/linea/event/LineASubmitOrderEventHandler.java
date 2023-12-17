@@ -30,7 +30,7 @@ import java.util.Map;
 // 下供应商订单，需要更新订单状态，则需要调用 repository.save 方法
 
 @Component
-public class SubmitOrderEventHandler {
+public class LineASubmitOrderEventHandler {
 
     @Autowired
     private OrderRepository repository;

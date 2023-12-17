@@ -13,9 +13,9 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * 接收外部消息
- * 例如 支付回调/供应商回调
- * 然后将其反序列化为 DomainCommand ，发送到 Message Bus 中执行
+ * 监听 DomainCommand
+ *
+ *
  */
 
 @Component

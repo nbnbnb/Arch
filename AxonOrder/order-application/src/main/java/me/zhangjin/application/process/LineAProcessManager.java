@@ -1,10 +1,10 @@
 package me.zhangjin.application.process;
 
-import me.zhangjin.application.handler.common.CompleteOrderCommandHandler;
-import me.zhangjin.application.handler.linea.command.ConfirmVenderCommandHandler;
-import me.zhangjin.application.handler.linea.command.SubmitLineAOrderCommandHandler;
-import me.zhangjin.application.handler.linea.event.ConfirmVenderEventHandler;
-import me.zhangjin.application.handler.linea.event.SubmitOrderEventHandler;
+import me.zhangjin.application.handler.common.command.CommonCompleteOrderCommandHandler;
+import me.zhangjin.application.handler.linea.command.LineAConfirmVenderCommandHandler;
+import me.zhangjin.application.handler.linea.command.LineASubmitOrderCommandHandler;
+import me.zhangjin.application.handler.linea.event.LineAConfirmVenderEventHandler;
+import me.zhangjin.application.handler.linea.event.LineASubmitOrderEventHandler;
 import me.zhangjin.types.ProcessType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -13,19 +13,19 @@ import org.springframework.stereotype.Component;
 public class LineAProcessManager extends AbstractProcessManager {
 
     @Autowired
-    private SubmitLineAOrderCommandHandler submitOrderCommandHandler;
+    private LineASubmitOrderCommandHandler submitOrderCommandHandler;
 
     @Autowired
-    private SubmitOrderEventHandler submitOrderEventHandler;
+    private LineASubmitOrderEventHandler submitOrderEventHandler;
 
     @Autowired
-    private ConfirmVenderEventHandler confirmVenderEventHandler;
+    private LineAConfirmVenderEventHandler confirmVenderEventHandler;
 
     @Autowired
-    private ConfirmVenderCommandHandler confirmVenderCommandHandler;
+    private LineAConfirmVenderCommandHandler confirmVenderCommandHandler;
 
     @Autowired
-    private CompleteOrderCommandHandler completeOrderCommandHandler;
+    private CommonCompleteOrderCommandHandler completeOrderCommandHandler;
 
     @Override
     public void initialize() {

@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 
 
 @Component
-public class ConfirmVenderCommandHandler {
+public class LineAConfirmVenderCommandHandler {
 
     @Autowired
     private OrderRepository repository;

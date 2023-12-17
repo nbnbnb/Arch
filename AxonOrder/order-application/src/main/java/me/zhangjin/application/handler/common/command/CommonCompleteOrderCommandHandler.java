@@ -1,4 +1,4 @@
-package me.zhangjin.application.handler.common;
+package me.zhangjin.application.handler.common.command;
 
 import me.zhangjin.domain.acl.repository.OrderRepository;
 import me.zhangjin.domain.command.common.CommonCompleteOrderCommand;
@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CompleteOrderCommandHandler {
+public class CommonCompleteOrderCommandHandler {
 
     @Autowired
     private OrderRepository repository;

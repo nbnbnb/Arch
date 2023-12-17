@@ -1,6 +1,6 @@
 package me.zhangjin.application.process;
 
-import me.zhangjin.application.handler.common.CompleteOrderCommandHandler;
+import me.zhangjin.application.handler.common.command.CommonCompleteOrderCommandHandler;
 import me.zhangjin.types.ProcessType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 public class LineBProcessManager extends AbstractProcessManager {
 
     @Autowired
-    private CompleteOrderCommandHandler completeOrderCommandHandler;
+    private CommonCompleteOrderCommandHandler completeOrderCommandHandler;
 
     @Override
     public void initialize() {

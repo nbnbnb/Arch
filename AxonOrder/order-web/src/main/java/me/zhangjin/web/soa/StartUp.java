@@ -39,6 +39,7 @@ public class StartUp {
         orderLogger.info("--------------------------- LineASubmitOrderCommand start-----------------------------");
         orderService.lineASubmitOrder(requestType);
         orderLogger.info("--------------------------- LineASubmitOrderCommand  end -----------------------------");
+        orderLogger.info("");
     }
 
     @Scheduled(initialDelay = 4000)
@@ -49,6 +50,7 @@ public class StartUp {
         orderLogger.info("--------------------------- LineASubmitOrderEvent start-----------------------------");
         domainEventMessageListener.on(content, eventtype);
         orderLogger.info("--------------------------- LineASubmitOrderEvent  end -----------------------------");
+        orderLogger.info("");
     }
 
     @Scheduled(initialDelay = 6000)
@@ -59,6 +61,7 @@ public class StartUp {
         orderLogger.info("--------------------------- LineASendVenderEvent start-----------------------------");
         domainEventMessageListener.on(content, eventtype);
         orderLogger.info("--------------------------- LineASendVenderEvent  end -----------------------------");
+        orderLogger.info("");
     }
 
     @Scheduled(initialDelay = 8000)
@@ -70,6 +73,7 @@ public class StartUp {
         // 监听外部 DomainCommand MQ 触发
         domainCommandMessageListener.on(content, eventtype);
         orderLogger.info("--------------------------- LineAConfirmVenderCommand  end -----------------------------");
+        orderLogger.info("");
     }
 
     @Scheduled(initialDelay = 10000)
@@ -81,6 +85,7 @@ public class StartUp {
         // 监听内部 DomainEvent MQ 触发
         domainEventMessageListener.on(content, eventtype);
         orderLogger.info("--------------------------- LineAConfirmVenderEvent  end -----------------------------");
+        orderLogger.info("");
     }
 
     @Scheduled(initialDelay = 12000)
@@ -92,6 +97,7 @@ public class StartUp {
         // 监听外部 DomainCommand MQ 触发
         domainCommandMessageListener.on(content, eventtype);
         orderLogger.info("--------------------------- CommonCompleteOrderCommand  end -----------------------------");
+        orderLogger.info("");
     }
 }
 

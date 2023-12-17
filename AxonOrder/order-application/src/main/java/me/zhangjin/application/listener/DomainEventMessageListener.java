@@ -13,7 +13,8 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * 监听 Process 服务自身发送的 DomainEvent
+ * 监听 DomainEvent
+ *
  */
 @Component
 public class DomainEventMessageListener {

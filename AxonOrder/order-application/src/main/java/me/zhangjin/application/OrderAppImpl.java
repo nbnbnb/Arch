@@ -2,7 +2,6 @@ package me.zhangjin.application;
 
 import me.zhangjin.application.bus.CommandBus;
 import me.zhangjin.domain.command.linea.SubmitLineAOrderCommand;
-import me.zhangjin.domain.command.linea.SubmitOrderCommand;
 import me.zhangjin.types.dto.SubmitOrderDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

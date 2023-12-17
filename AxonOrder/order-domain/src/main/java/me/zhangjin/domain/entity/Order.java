@@ -1,9 +1,12 @@
 package me.zhangjin.domain.entity;
 
 import lombok.Getter;
+import me.zhangjin.domain.command.CompleteOrderCommand;
+import me.zhangjin.domain.convert.CompleteOrderEventConvert;
 import me.zhangjin.domain.convert.ConfirmVenderEventConvert;
 import me.zhangjin.domain.convert.SendVenderEventConvert;
 import me.zhangjin.domain.convert.SubmitOrderEventConvert;
+import me.zhangjin.domain.event.CompleteOrderEvent;
 import me.zhangjin.domain.event.ConfirmVenderEvent;
 import me.zhangjin.domain.event.SendVenderEvent;
 import me.zhangjin.domain.event.SubmitOrderEvent;
@@ -11,6 +14,8 @@ import me.zhangjin.types.ProcessType;
 import me.zhangjin.domain.command.ConfirmVenderCommand;
 import me.zhangjin.domain.command.SendVenderCommand;
 import me.zhangjin.domain.command.SubmitOrderCommand;
+
+import java.time.LocalDateTime;
 
 
 @Getter
@@ -26,8 +31,14 @@ public class Order extends RootEntity {
 
     private Long venderId;
 
-    public void submitOrder(SubmitOrderCommand command) {
+    // 1 自动完成
+    // 2 手动完成
+    private Integer completeType;
 
+    private LocalDateTime completeTime;
+
+    // region 通过公共方法，修改 Entity 状态，方法名有明确的业务含义
+    public void submitOrder(SubmitOrderCommand command) {
         // 将 Command 转换为 Event
         // 修改内存中的状态（调用符合签名的 when 方法）
         apply(SubmitOrderEventConvert.convert(command));
@@ -40,6 +51,12 @@ public class Order extends RootEntity {
     public void confirmVender(ConfirmVenderCommand command) {
         apply(ConfirmVenderEventConvert.convert(command));
     }
+
+    public void completeOrder(CompleteOrderCommand command) {
+        apply(CompleteOrderEventConvert.convert(command));
+    }
+
+    // endregion
 
     // region when 处理方法：强制要求 - 所有对 Order 数据的修改，都在 when 方法中执行
 
@@ -67,6 +84,13 @@ public class Order extends RootEntity {
         this.orderStatus = event.getOrderStatus().getCode();
         this.venderId = event.getVenderId();
         this.venderOrderCode = event.getVenderOrderCode();
+    }
+
+    private void when(CompleteOrderEvent event) {
+        // 设置为完成状态
+        this.orderStatus = event.getOrderStatus().getCode();
+        this.completeTime = event.getCompleteTime();
+        this.completeType = event.getCompleteType();
     }
 
     // endregion

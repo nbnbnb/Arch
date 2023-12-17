@@ -40,7 +40,7 @@ public class OrderRepositoryImpl implements OrderRepository {
         saveSnapshot(order);
 
         // 发送 Message
-        messageProducer.send(MessageTopic.ORDER_DOMAIN_EVENT_TOPIC,buildMessage(currentEvent));
+        messageProducer.sendDomainEvent(currentEvent);
     }
 
     private Order loadSnapshot(Long orderId) {
@@ -59,10 +59,4 @@ public class OrderRepositoryImpl implements OrderRepository {
         // 保存 Event 到 Mongo
     }
 
-    private Map<String,Object> buildMessage(DomainEvent domainEvent) {
-        Map<String, Object> message = new HashMap<>();
-        message.put("orderId", domainEvent.getOrderId());
-        message.put("content", JSON.toJSON(domainEvent));
-        return message;
-    }
 }

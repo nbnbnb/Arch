@@ -8,6 +8,11 @@ import me.zhangjin.types.ProcessType;
 @Setter
 @Getter
 public class SubmitOrderEvent extends DomainEvent {
+
+    public SubmitOrderEvent(Long orderId){
+        super(orderId);
+    }
+
     @Override
     public String getDesc() {
         return "Do SubmitOrderEvent";

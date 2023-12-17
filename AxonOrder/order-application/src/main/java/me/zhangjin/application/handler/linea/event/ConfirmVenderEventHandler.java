@@ -3,7 +3,7 @@ package me.zhangjin.application.handler.linea.event;
 import com.alibaba.fastjson.JSON;
 import me.zhangjin.domain.acl.messaging.MessageProducer;
 import me.zhangjin.domain.acl.messaging.MessageTopic;
-import me.zhangjin.domain.command.AutoCompleteCommand;
+import me.zhangjin.domain.command.CompleteOrderCommand;
 import me.zhangjin.domain.command.DomainCommand;
 import me.zhangjin.domain.event.ConfirmVenderEvent;
 import me.zhangjin.domain.event.DomainEvent;
@@ -23,35 +23,24 @@ public class ConfirmVenderEventHandler {
 
     @Handler
     public void sendSMS(ConfirmVenderEvent event) {
+        Map<String,String> data = new HashMap<>();
+        data.put("phone","13888888888");
+        data.put("content","test test");
         // 发送确认短信
-        messageProducer.send(MessageTopic.ORDER_SEND_SMS,buildMessage(event));
+        messageProducer.sendSMS(data);
     }
 
     @Handler
     public void sendDelayCompleteMQ(ConfirmVenderEvent event) {
         LocalDateTime delayTime = LocalDateTime.now().minusDays(1);
 
-        AutoCompleteCommand autoCompleteCommand = new AutoCompleteCommand();
+        CompleteOrderCommand autoCompleteCommand = new CompleteOrderCommand();
         autoCompleteCommand.setOrderId(event.getOrderId());
 
-        // 发送延迟消息
-        messageProducer.send(MessageTopic.ORDER_DOMAIN_COMAND_TOPIC, buildMessage(autoCompleteCommand), delayTime);
+        // 发送延迟消息（DomainCommand）
+        messageProducer.sendDomainCommand(autoCompleteCommand, delayTime);
     }
 
-    private Map<String,Object> buildMessage(DomainCommand domainCommand) {
-        Map<String, Object> message = new HashMap<>();
-        message.put("orderid", domainCommand.getOrderId());
-        message.put("eventtype",domainCommand.getClass().getTypeName());
-        message.put("content", JSON.toJSON(domainCommand));
-        return message;
-    }
 
-    private Map<String,Object> buildMessage(DomainEvent domainEvent) {
-        Map<String, Object> message = new HashMap<>();
-        message.put("orderId", domainEvent.getOrderId());
-        message.put("eventtype",domainEvent.getClass().getTypeName());
-        message.put("content", JSON.toJSON(domainEvent));
-        return message;
-    }
 
 }

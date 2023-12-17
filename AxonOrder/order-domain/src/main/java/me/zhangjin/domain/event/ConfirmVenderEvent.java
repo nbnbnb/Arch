@@ -7,6 +7,11 @@ import me.zhangjin.domain.entity.OrderStatus;
 @Getter
 @Setter
 public class ConfirmVenderEvent extends DomainEvent {
+
+    public ConfirmVenderEvent(Long orderId){
+        super(orderId);
+    }
+
     @Override
     public String getDesc() {
         return "Do ConfirmVenderEvent";

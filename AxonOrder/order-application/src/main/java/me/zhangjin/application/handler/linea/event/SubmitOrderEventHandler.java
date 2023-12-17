@@ -44,12 +44,20 @@ public class SubmitOrderEventHandler {
 
     @Handler
     public void sendSMS(SubmitOrderEvent event) {
-        messageProducer.send(MessageTopic.ORDER_SEND_SMS,buildMessage(event));
+        Map<String,String> data = new HashMap<>();
+        data.put("phone","13888888888");
+        data.put("content","test test");
+        // 发送确认短信
+        messageProducer.sendSMS(data);
     }
 
     @Handler
     public void sendEmail(SubmitOrderEvent event) {
-        messageProducer.send(MessageTopic.ORDER_SEND_EMAIL,buildMessage(event));
+        Map<String,String> data = new HashMap<>();
+        data.put("email","abc@abc.com");
+        data.put("content","test test test");
+        // 发送确认短信
+        messageProducer.sendEmail(data);
     }
 
     @Handler
@@ -61,11 +69,13 @@ public class SubmitOrderEventHandler {
         // 02. verify
         // 业务逻辑检查
 
+        Map<String,String> data = new HashMap<>();
+        data.put("orderid",event.getOrderId().toString());
         // 03
         // 对接供应商层，可以专门部署对应的微服务
         // 通过 MQ 进行适配，对接底层不同供应商（同步/异步）
         // 保持 Process 这层接口的稳定性
-        messageProducer.send(MessageTopic.ORDER_SEND_VENDER,buildMessage(event));
+        messageProducer.sendVendor(data);
 
         // 04 变更快照状态（内存）
         SendVenderCommand sendVenderCommand = new SendVenderCommand();
@@ -76,11 +86,6 @@ public class SubmitOrderEventHandler {
         repository.save(order);
     }
 
-    private Map<String,Object> buildMessage(DomainEvent domainEvent) {
-        Map<String, Object> message = new HashMap<>();
-        message.put("orderId", domainEvent.getOrderId());
-        message.put("content", JSON.toJSON(domainEvent));
-        return message;
-    }
+
 
 }

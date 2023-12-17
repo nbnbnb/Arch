@@ -1,13 +1,13 @@
 package me.zhangjin.domain.convert;
 
 
+import me.zhangjin.domain.command.linea.SubmitLineAOrderCommand;
 import me.zhangjin.domain.entity.OrderStatus;
 import me.zhangjin.domain.event.linea.SubmitOrderEvent;
-import me.zhangjin.domain.command.linea.SubmitOrderCommand;
 
 
 public class SubmitOrderEventConvert {
-    public static SubmitOrderEvent convert(SubmitOrderCommand command){
+    public static SubmitOrderEvent convert(SubmitLineAOrderCommand command){
 
         // 将 Command 转换为 Event
         SubmitOrderEvent event = new SubmitOrderEvent(command.getOrderId());

@@ -11,5 +11,5 @@ import me.zhangjin.types.dto.SubmitOrderDTO;
 public interface OrderApp {
     // Application 层的接口入参使用 Command/Query/Event
     // 响应 DTO
-    SubmitOrderDTO submitOrder(SubmitLineAOrderCommand submitLineAOrderCommand);
+    SubmitOrderDTO submitLineAOrder(SubmitLineAOrderCommand submitLineAOrderCommand);
 }

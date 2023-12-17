@@ -2,7 +2,7 @@ package me.zhangjin.application.process;
 
 import me.zhangjin.application.handler.common.CompleteOrderCommandHandler;
 import me.zhangjin.application.handler.linea.command.ConfirmVenderCommandHandler;
-import me.zhangjin.application.handler.linea.command.SubmitOrderCommandHandler;
+import me.zhangjin.application.handler.linea.command.SubmitLineAOrderCommandHandler;
 import me.zhangjin.application.handler.linea.event.ConfirmVenderEventHandler;
 import me.zhangjin.application.handler.linea.event.SubmitOrderEventHandler;
 import me.zhangjin.types.ProcessType;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 public class LineAProcessManager extends AbstractProcessManager {
 
     @Autowired
-    private SubmitOrderCommandHandler submitOrderCommandHandler;
+    private SubmitLineAOrderCommandHandler submitOrderCommandHandler;
 
     @Autowired
     private SubmitOrderEventHandler submitOrderEventHandler;

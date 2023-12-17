@@ -2,6 +2,7 @@ package me.zhangjin.domain.entity;
 
 import lombok.Getter;
 import me.zhangjin.domain.command.common.CompleteOrderCommand;
+import me.zhangjin.domain.command.linea.SubmitLineAOrderCommand;
 import me.zhangjin.domain.convert.CompleteOrderEventConvert;
 import me.zhangjin.domain.convert.ConfirmVenderEventConvert;
 import me.zhangjin.domain.convert.SendVenderEventConvert;
@@ -13,7 +14,6 @@ import me.zhangjin.domain.event.linea.SubmitOrderEvent;
 import me.zhangjin.types.ProcessType;
 import me.zhangjin.domain.command.linea.ConfirmVenderCommand;
 import me.zhangjin.domain.command.linea.SendVenderCommand;
-import me.zhangjin.domain.command.linea.SubmitOrderCommand;
 
 import java.time.LocalDateTime;
 
@@ -38,7 +38,7 @@ public class Order extends RootEntity {
     private LocalDateTime completeTime;
 
     // region 通过公共方法，修改 Entity 状态，方法名有明确的业务含义
-    public void submitOrder(SubmitOrderCommand command) {
+    public void submitOrder(SubmitLineAOrderCommand command) {
         // 将 Command 转换为 Event
         // 修改内存中的状态（调用符合签名的 when 方法）
         apply(SubmitOrderEventConvert.convert(command));

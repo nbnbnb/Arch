@@ -3,14 +3,15 @@ package me.zhangjin.application.handler.linea.command;
 
 import me.zhangjin.domain.acl.repository.OrderRepository;
 import me.zhangjin.domain.acl.soa.RiskVerify;
+import me.zhangjin.domain.command.linea.SubmitLineAOrderCommand;
 import me.zhangjin.domain.entity.Order;
-import me.zhangjin.domain.command.linea.SubmitOrderCommand;
+import me.zhangjin.types.dto.SubmitOrderDTO;
 import net.engio.mbassy.listener.Handler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class SubmitOrderCommandHandler {
+public class SubmitLineAOrderCommandHandler {
 
     @Autowired
     private OrderRepository repository;
@@ -19,7 +20,7 @@ public class SubmitOrderCommandHandler {
     private RiskVerify riskVerify;
 
     @Handler
-    public void submitOrder(SubmitOrderCommand command) {
+    public SubmitOrderDTO submitLineAOrder(SubmitLineAOrderCommand command) {
 
         // 使用方式：
         // 在 handle 方法中，执行业务逻辑处理
@@ -40,6 +41,11 @@ public class SubmitOrderCommandHandler {
 
         // 4. 保存最新快照，并发送 MQ
         repository.save(order);
+
+        SubmitOrderDTO res = new SubmitOrderDTO();
+        res.setSuccess(true);
+
+        return res;
 
     }
 }

@@ -13,8 +13,8 @@ public class OrderAppImpl implements OrderApp {
     private CommandBus bus;
 
     @Override
-    public SubmitOrderDTO submitOrder(SubmitLineAOrderCommand submitLineAOrderCommand) {
-        bus.send(submitLineAOrderCommand);
-        return null;
+    public SubmitOrderDTO submitLineAOrder(SubmitLineAOrderCommand submitLineAOrderCommand) {
+        return bus.sendWithResult(submitLineAOrderCommand);
+
     }
 }

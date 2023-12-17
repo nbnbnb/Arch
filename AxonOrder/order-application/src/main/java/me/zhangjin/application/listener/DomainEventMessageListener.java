@@ -14,7 +14,12 @@ import java.util.Set;
 
 /**
  * 监听 DomainEvent
- *
+ * <p>
+ * DomainEvent 表示领域事件，发送这个事件的时候，表示此事件已经发生了
+ * <p>
+ * Process 服务会监听此事件，基于此类事件循环触发执行业务逻辑（状态机）
+ * <p>
+ * 注意：只能在 Process 服务中发送 DomainEvent（隐式的，repository.save 会自动触发）
  */
 @Component
 public class DomainEventMessageListener {

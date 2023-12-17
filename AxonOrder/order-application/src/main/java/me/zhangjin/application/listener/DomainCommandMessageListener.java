@@ -14,8 +14,12 @@ import java.util.Set;
 
 /**
  * 监听 DomainCommand
- *
- *
+ * <p>
+ * 接收外部事件，触发系统状态的改变：例如支付回调事件/供应商确认事件
+ * <p>
+ * SOA 接口调用与 DomainCommand MQ 处理逻辑一致
+ * <p>
+ * SOA 是将 RequestType 转换为 DomainCommand，而 DomainCommand MQ 是直接执行反序列化得到 DomainCommand
  */
 
 @Component

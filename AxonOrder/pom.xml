@@ -25,7 +25,6 @@
         <module>order-web</module>
         <module>order-types</module>
         <module>order-acl</module>
-        <module>order-start</module>
     </modules>
 
     <dependencyManagement>
@@ -63,6 +62,7 @@
                 <version>${project.version}</version>
             </dependency>
             <!-- Project modules End -->
+
             <!-- Spring Boot -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -72,8 +72,7 @@
                 <scope>import</scope>
             </dependency>
             <!-- Spring Boot End -->
-
-
+            
             <!-- Misc -->
             <dependency>
                 <groupId>org.reflections</groupId>

@@ -1,9 +1,9 @@
-package me.zhangjin.application.handler.order;
+package me.zhangjin.application.handler.linea.command;
 
 
 import me.zhangjin.domain.acl.repository.OrderRepository;
 import me.zhangjin.domain.entity.Order;
-import me.zhangjin.types.command.SubmitOrderCommand;
+import me.zhangjin.domain.command.SubmitOrderCommand;
 import net.engio.mbassy.listener.Handler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -25,16 +25,16 @@ public class SubmitOrderCommandHandler {
         // 最后，调用 repository.save 方法，将最新的快照保存到 DB，同时发送 DomainEvent 到 MQ
 
         // 1. 准备数据，加载快照最新版本
-        Order master = repository.load(command.getOrderId());
+        Order order = repository.load(command.getOrderId());
 
         // 2. 执行业务逻辑（风控调用接口）
         // verify
 
         // 3. 变更快照状态（内存）
-        master.submitOrder(command);
+        order.submitOrder(command);
 
         // 4. 保存最新快照，并发送 MQ
-        repository.save(master);
+        repository.save(order);
 
     }
 }

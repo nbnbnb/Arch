@@ -2,7 +2,7 @@ package me.zhangjin.web.soa;
 
 
 import me.zhangjin.types.Result;
-import me.zhangjin.types.command.SubmitOrderCommand;
+import me.zhangjin.domain.command.SubmitOrderCommand;
 import me.zhangjin.types.dto.SubmitOrderDTO;
 import me.zhangjin.types.soa.SubmitOrderRequestType;
 import org.springframework.beans.factory.annotation.Autowired;

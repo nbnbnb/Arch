@@ -1,8 +1,9 @@
 package me.zhangjin.domain.convert;
 
 
+import me.zhangjin.domain.entity.OrderStatus;
 import me.zhangjin.domain.event.SubmitOrderEvent;
-import me.zhangjin.types.command.SubmitOrderCommand;
+import me.zhangjin.domain.command.SubmitOrderCommand;
 
 
 public class SubmitOrderEventConvert {
@@ -12,6 +13,7 @@ public class SubmitOrderEventConvert {
         SubmitOrderEvent event = new SubmitOrderEvent();
         event.setOrderId(command.getOrderId());
         event.setProcessType(command.getProcessType());
+        event.setOrderStatus(OrderStatus.Submit);
 
         return event;
     }

@@ -3,17 +3,14 @@ package me.zhangjin.domain.event;
 import lombok.Getter;
 import lombok.Setter;
 import me.zhangjin.domain.entity.OrderStatus;
-import me.zhangjin.types.ProcessType;
 
 @Setter
 @Getter
-public class SubmitOrderEvent extends DomainEvent {
+public class SendVenderEvent extends DomainEvent {
     @Override
     public String getDesc() {
-        return "Do SubmitOrderEvent";
+        return "Do SendVenderEvent";
     }
-
-    private ProcessType processType;
 
     private OrderStatus orderStatus;
 }

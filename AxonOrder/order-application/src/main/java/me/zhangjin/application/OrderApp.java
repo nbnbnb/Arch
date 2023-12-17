@@ -1,7 +1,7 @@
 package me.zhangjin.application;
 
 
-import me.zhangjin.types.command.SubmitOrderCommand;
+import me.zhangjin.domain.command.SubmitOrderCommand;
 import me.zhangjin.types.dto.SubmitOrderDTO;
 
 /**

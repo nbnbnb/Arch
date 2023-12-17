@@ -6,6 +6,7 @@ import me.zhangjin.domain.acl.messaging.MessageProducer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.util.Map;
 
 @Component
@@ -17,5 +18,10 @@ public class MessageProducerImpl implements MessageProducer {
     @Override
     public void send(String topic, Map<String,Object> data) {
         orderLogger.info("send message: %s %s", topic, JSON.toJSONString(data));
+    }
+
+    @Override
+    public void send(String topic, Map<String, Object> data, LocalDateTime delayTime) {
+        orderLogger.info("send delay message: %s %s at %s", topic, JSON.toJSONString(data), delayTime);
     }
 }

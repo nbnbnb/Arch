@@ -15,16 +15,16 @@ public class  CommonMessageBus<T> {
         bus.subscribe(listener);
     }
 
-
     public void publish(T message) {
-        IMessagePublication result = bus.publish(message);
-        if (result.hasError()) {
-            throw new BusException(result.getError().getCause());
-        }
+        publishWithResult(message);
     }
 
     public IMessagePublication publishWithResult(T message) {
-        return bus.publish(message);
+        IMessagePublication result = bus.publish(message);
+        if (result.hasError()) {
+            throw new RuntimeException((result.getError().getCause()));
+        }
+        return result;
     }
 
 }

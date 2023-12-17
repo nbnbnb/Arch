@@ -7,12 +7,13 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-public abstract class DomainEvent extends AbstractEvent {
+public abstract class DomainEvent {
 
     protected long eventVersion;
     protected LocalDateTime occurredOn;
     private String detailDesc;
     private String operatorEid;
+    protected Long orderId;
 
     public DomainEvent() {
         occurredOn = LocalDateTime.now();

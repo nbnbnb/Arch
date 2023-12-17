@@ -7,14 +7,14 @@ import java.util.Map;
 public enum ProcessType {
 
     // 用于区分不同的业务流程
-    Line01Process("Line01 Process"),
-    Line02Process("Line02 Process");
+    LineAProcess("LineA Process"),
+    LineBProcess("LineB Process");
 
     private final static Map<String, ProcessType> PROCESS_TYPE_MAP = new HashMap<>();
 
     static {
-        PROCESS_TYPE_MAP.put(ProcessType.Line01Process.toString(), ProcessType.Line01Process);
-        PROCESS_TYPE_MAP.put(ProcessType.Line02Process.toString(), ProcessType.Line02Process);
+        PROCESS_TYPE_MAP.put(ProcessType.LineAProcess.toString(), ProcessType.LineAProcess);
+        PROCESS_TYPE_MAP.put(ProcessType.LineBProcess.toString(), ProcessType.LineBProcess);
     }
 
     private String desc;

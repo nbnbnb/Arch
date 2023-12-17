@@ -52,6 +52,7 @@ public abstract class RootEntity {
 
         Class<? extends RootEntity> rootType = this.getClass();
         Class<? extends DomainEvent> eventType = domainEvent.getClass();
+
         String key = rootType.getName() + ":" + eventType.getName();
         Method mutatorMethod = mutatorMethods.get(key);
 

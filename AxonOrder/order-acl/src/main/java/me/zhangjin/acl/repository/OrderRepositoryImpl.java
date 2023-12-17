@@ -3,6 +3,7 @@ package me.zhangjin.acl.repository;
 import com.alibaba.fastjson.JSON;
 import me.zhangjin.domain.acl.logger.OrderLogger;
 import me.zhangjin.domain.acl.messaging.MessageProducer;
+import me.zhangjin.domain.acl.messaging.MessageTopic;
 import me.zhangjin.domain.acl.repository.OrderRepository;
 import me.zhangjin.domain.entity.Order;
 import me.zhangjin.domain.event.DomainEvent;
@@ -14,8 +15,6 @@ import java.util.Map;
 
 @Component
 public class OrderRepositoryImpl implements OrderRepository {
-
-    private static final String ORDER_DOMAIN_EVENT_TOPIC= "order.domain.event";
 
     @Autowired
     private MessageProducer messageProducer;
@@ -41,7 +40,7 @@ public class OrderRepositoryImpl implements OrderRepository {
         saveSnapshot(order);
 
         // 发送 Message
-        messageProducer.send(ORDER_DOMAIN_EVENT_TOPIC,buildMessage(currentEvent));
+        messageProducer.send(MessageTopic.ORDER_DOMAIN_EVENT_TOPIC,buildMessage(currentEvent));
     }
 
     private Order loadSnapshot(Long orderId) {

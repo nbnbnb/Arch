@@ -21,7 +21,7 @@ public class EventMessageListener {
         Reflections reflections = new Reflections();
         Set<Class<? extends DomainEvent>> types = reflections.getSubTypesOf(DomainEvent.class);
         for (Class<? extends DomainEvent> type : types) {
-            typeMaps.put(type.getSimpleName(), type);
+            typeMaps.put(type.getTypeName(), type);
         }
     }
 

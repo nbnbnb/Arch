@@ -1,8 +1,8 @@
 package me.zhangjin.acl.lock;
 
-import me.zhangjin.acl.acl.lock.Locker;
+import me.zhangjin.domain.acl.lock.Locker;
 
-import me.zhangjin.acl.acl.logger.OrderLogger;
+import me.zhangjin.domain.acl.logger.OrderLogger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

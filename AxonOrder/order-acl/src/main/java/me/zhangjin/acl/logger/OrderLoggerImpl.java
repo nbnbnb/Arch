@@ -1,6 +1,6 @@
 package me.zhangjin.acl.logger;
 
-import me.zhangjin.acl.acl.logger.OrderLogger;
+import me.zhangjin.domain.acl.logger.OrderLogger;
 
 public class OrderLoggerImpl implements OrderLogger {
 

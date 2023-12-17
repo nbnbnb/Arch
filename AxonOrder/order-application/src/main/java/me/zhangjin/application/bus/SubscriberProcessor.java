@@ -1,4 +1,4 @@
-package me.zhangjin.domain.bus;
+package me.zhangjin.application.bus;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.InitializingBean;

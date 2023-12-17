@@ -1,4 +1,4 @@
-package me.zhangjin.domain.bus;
+package me.zhangjin.application.bus;
 
 import net.engio.mbassy.bus.IMessagePublication;
 import net.engio.mbassy.bus.MBassador;

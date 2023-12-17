@@ -1,6 +1,6 @@
 package me.zhangjin.application.process;
 
-import me.zhangjin.domain.bus.CommonMessageBus;
+import me.zhangjin.application.bus.CommonMessageBus;
 import me.zhangjin.types.ProcessType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -75,19 +75,11 @@ public abstract class AbstractProcessManager implements InitializingBean {
             }
         }
 
-        public Boolean getIgnoreException() {
-            return ignoreException;
-        }
-
-        public void setIgnoreException(Boolean ignoreException) {
+        private void setIgnoreException(Boolean ignoreException) {
             this.ignoreException = ignoreException;
         }
 
-        public CommonMessageBus getBus() {
-            return bus;
-        }
-
-        public void setBus(CommonMessageBus bus) {
+        private void setBus(CommonMessageBus bus) {
             this.bus = bus;
         }
     }

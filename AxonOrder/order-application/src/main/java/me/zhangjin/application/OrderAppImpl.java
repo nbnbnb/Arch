@@ -1,6 +1,6 @@
 package me.zhangjin.application;
 
-import me.zhangjin.domain.bus.CommandBus;
+import me.zhangjin.application.bus.CommandBus;
 import me.zhangjin.domain.command.SubmitOrderCommand;
 import me.zhangjin.types.dto.SubmitOrderDTO;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -84,6 +84,7 @@ public class SubmitOrderEventHandler {
         order.sendVender(sendVenderCommand);
 
         // 05. 保存最新快照，并发送 MQ
+        // 发送 SendVenderEvent 到 MQ
         repository.save(order);
     }
 

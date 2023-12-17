@@ -50,6 +50,7 @@ public class SubmitLineAOrderCommandHandler {
         order.submitOrder(command);
 
         // 4. 保存最新快照，并发送 MQ
+        // 发送 SubmitOrderEvent 到 MQ
         repository.save(order);
 
         // 5. 设置返回值

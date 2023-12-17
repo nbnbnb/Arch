@@ -19,12 +19,13 @@ import java.util.Set;
  */
 
 @Component
-public class CommandMessageListener {
+public class DomainCommandMessageListener {
 
     private static Map<String, Class<? extends DomainCommand>> typeMaps = new HashMap<>(16);
 
     static {
-        Reflections reflections = new Reflections();
+        // 注意，此处要设置 prefix，路径要对
+        Reflections reflections = new Reflections("me.zhangjin.domain.command");
         Set<Class<? extends DomainCommand>> types = reflections.getSubTypesOf(DomainCommand.class);
         for (Class<? extends DomainCommand> type : types) {
             typeMaps.put(type.getTypeName(), type);
@@ -56,6 +57,9 @@ public class CommandMessageListener {
 
     private static DomainCommand resolve(String eventType, String content) {
         Class<? extends DomainCommand> clazz = typeMaps.get(eventType);
+        if (clazz == null) {
+            throw new RuntimeException("resolve domaincommand is null");
+        }
         return JSON.parseObject(content, clazz);
     }
 

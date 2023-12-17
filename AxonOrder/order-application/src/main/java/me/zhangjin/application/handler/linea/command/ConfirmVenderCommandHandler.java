@@ -33,6 +33,7 @@ public class ConfirmVenderCommandHandler {
         order.confirmVender(command);
 
         // 4. 保存最新快照，并发送 MQ
+        // 发送 ConfirmVenderEvent 到 MQ
         repository.save(order);
 
         // 5. 设置返回结果

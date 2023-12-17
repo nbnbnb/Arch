@@ -7,7 +7,6 @@ import me.zhangjin.types.dto.SendVenderDTO;
 import me.zhangjin.types.dto.SubmitLineAOrderDTO;
 
 public class SendVenderCommand extends DomainCommand<SendVenderDTO> {
-
     public SendVenderCommand(Long orderId, ProcessType processType) {
         super(orderId, processType);
     }

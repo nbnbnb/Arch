@@ -10,10 +10,6 @@ import me.zhangjin.types.ProcessType;
 @Setter
 public class ConfirmVenderEvent extends DomainEvent {
 
-    public ConfirmVenderEvent(Long orderId, ProcessType processType) {
-        super(orderId, processType);
-    }
-
     @Override
     public String getDesc() {
         return "Do ConfirmVenderEvent";

@@ -19,13 +19,11 @@ public abstract class DomainEvent {
     protected String operatorEid;
 
 
-    public DomainEvent(Long orderId, ProcessType processType) {
+    public DomainEvent() {
         this.occurredOn = LocalDateTime.now();
         // 默认 System
         // 可以根据请求场景，重新赋值
         this.operatorEid = "System";
-        this.orderId = orderId;
-        this.processType = processType;
     }
 
     public abstract String getDesc();

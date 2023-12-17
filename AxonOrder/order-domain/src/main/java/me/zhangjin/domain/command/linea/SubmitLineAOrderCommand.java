@@ -10,11 +10,5 @@ import me.zhangjin.types.dto.SubmitLineAOrderDTO;
 @Getter
 @Setter
 public class SubmitLineAOrderCommand extends DomainCommand<SubmitLineAOrderDTO> {
-
     private String uid;
-
-    public SubmitLineAOrderCommand(Long orderId, ProcessType processType) {
-        super(orderId, processType);
-    }
-
 }

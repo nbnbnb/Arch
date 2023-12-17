@@ -29,7 +29,9 @@ public class OrderService {
 
     public Result<Boolean> submitLineAOrder(SubmitLineAOrderRequestType submitOrderRequestType) {
 
-        SubmitLineAOrderCommand submitOrderCommand = new SubmitLineAOrderCommand(submitOrderRequestType.getOrderId(), ProcessType.LineAProcess);
+        SubmitLineAOrderCommand submitOrderCommand = new SubmitLineAOrderCommand();
+        submitOrderCommand.setOrderId(submitOrderRequestType.getOrderId());
+        submitOrderCommand.setProcessType(ProcessType.LineAProcess);
         submitOrderCommand.setUid(submitOrderRequestType.getUid());
         SubmitLineAOrderDTO res = orderApp.submitLineAOrder(submitOrderCommand);
 

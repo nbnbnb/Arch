@@ -13,10 +13,6 @@ import java.time.LocalDateTime;
 @Setter
 public class CompleteOrderEvent extends DomainEvent {
 
-    public CompleteOrderEvent(Long orderId, ProcessType processType) {
-        super(orderId, processType);
-    }
-
     @Override
     public String getDesc() {
         return "Do CompleteOrderEvent";

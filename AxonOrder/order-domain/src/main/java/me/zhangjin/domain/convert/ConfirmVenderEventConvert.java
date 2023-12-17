@@ -7,10 +7,12 @@ import me.zhangjin.domain.command.linea.ConfirmVenderCommand;
 public class ConfirmVenderEventConvert {
 
     public static ConfirmVenderEvent convert(ConfirmVenderCommand command) {
-        ConfirmVenderEvent confirmVenderEvent = new ConfirmVenderEvent(command.getOrderId(), command.getProcessType());
+        ConfirmVenderEvent confirmVenderEvent = new ConfirmVenderEvent();
         confirmVenderEvent.setVenderId(command.getVenderId());
-        confirmVenderEvent.setVenderOrderCode(confirmVenderEvent.getVenderOrderCode());
+        confirmVenderEvent.setVenderOrderCode(command.getVenderOrderCode());
         confirmVenderEvent.setOrderStatus(OrderStatus.ConfirmOrder);
+        confirmVenderEvent.setOrderId(command.getOrderId());
+        confirmVenderEvent.setProcessType(command.getProcessType());
 
         return confirmVenderEvent;
     }

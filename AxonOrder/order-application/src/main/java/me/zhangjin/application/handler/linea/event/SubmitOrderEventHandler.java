@@ -80,8 +80,11 @@ public class SubmitOrderEventHandler {
         messageProducer.sendVendor(data);
 
         // 04 变更快照状态（内存）
-        SendVenderCommand sendVenderCommand = new SendVenderCommand(event.getOrderId(), event.getProcessType());
+        SendVenderCommand sendVenderCommand = new SendVenderCommand();
+        sendVenderCommand.setOrderId(order.getOrderId());
+        sendVenderCommand.setProcessType(order.getProcessType());
         order.sendVender(sendVenderCommand);
+
 
         // 05. 保存最新快照，并发送 MQ
         // 发送 SendVenderEvent 到 MQ

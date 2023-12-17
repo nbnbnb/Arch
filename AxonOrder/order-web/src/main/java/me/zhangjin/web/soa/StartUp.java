@@ -68,9 +68,31 @@ public class StartUp {
         String eventtype ="me.zhangjin.domain.command.linea.ConfirmVenderCommand";
 
         orderLogger.info("--------------------------- ConfirmVenderCommand start-----------------------------");
-        // 监听外部 MQ 触发
+        // 监听外部 DomainCommand MQ 触发
         domainCommandMessageListener.on(content, eventtype);
         orderLogger.info("--------------------------- ConfirmVenderCommand  end -----------------------------");
+    }
+
+    @Scheduled(initialDelay = 10000)
+    public void confirmVenderEvent() {
+        String content = "{\"desc\":\"Do ConfirmVenderEvent\",\"eventVersion\":3,\"occurredOn\":\"2023-12-18T00:03:38.191954200\",\"operatorEid\":\"System\",\"orderId\":123456,\"orderStatus\":\"ConfirmOrder\",\"processType\":\"LineAProcess\",\"venderId\":9998,\"venderOrderCode\":\"AXFOIJFIEOFNEF\"}";
+        String eventtype ="me.zhangjin.domain.event.linea.ConfirmVenderEvent";
+
+        orderLogger.info("--------------------------- ConfirmVenderEvent start-----------------------------");
+        // 监听内部 DomainEvent MQ 触发
+        domainEventMessageListener.on(content, eventtype);
+        orderLogger.info("--------------------------- ConfirmVenderEvent  end -----------------------------");
+    }
+
+    @Scheduled(initialDelay = 12000)
+    public void completeOrderCommand() {
+        String content = "{\"desc\":\"Do ConfirmVenderEvent\",\"eventVersion\":3,\"occurredOn\":\"2023-12-18T00:03:38.191954200\",\"operatorEid\":\"System\",\"orderId\":123456,\"orderStatus\":\"ConfirmOrder\",\"processType\":\"LineAProcess\",\"venderId\":9998,\"venderOrderCode\":\"AXFOIJFIEOFNEF\"}";
+        String eventtype ="me.zhangjin.domain.command.common.CompleteOrderCommand";
+
+        orderLogger.info("--------------------------- CompleteOrderCommand start-----------------------------");
+        // 监听外部 DomainCommand MQ 触发
+        domainCommandMessageListener.on(content, eventtype);
+        orderLogger.info("--------------------------- CompleteOrderCommand  end -----------------------------");
     }
 }
 

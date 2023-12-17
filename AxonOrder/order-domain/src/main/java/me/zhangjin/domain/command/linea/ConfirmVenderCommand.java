@@ -16,8 +16,4 @@ public class ConfirmVenderCommand extends DomainCommand<ConfirmVenderDTO> {
 
     private Long venderId;
 
-    public ConfirmVenderCommand(Long orderId, ProcessType processType) {
-        super(orderId, processType);
-    }
-
 }

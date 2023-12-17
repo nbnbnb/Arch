@@ -39,7 +39,10 @@ public class ConfirmVenderEventHandler {
 
         LocalDateTime delayTime = LocalDateTime.now().minusDays(1);
 
-        CompleteOrderCommand autoCompleteCommand = new CompleteOrderCommand(CompleteType.Auto, order.getOrderId(), order.getProcessType());
+        CompleteOrderCommand autoCompleteCommand = new CompleteOrderCommand();
+        autoCompleteCommand.setCompleteType(CompleteType.Auto);
+        autoCompleteCommand.setOrderId(order.getOrderId());
+        autoCompleteCommand.setProcessType(order.getProcessType());
 
         // 发送延迟消息（DomainCommand）
         messageProducer.sendDomainCommand(autoCompleteCommand, delayTime);

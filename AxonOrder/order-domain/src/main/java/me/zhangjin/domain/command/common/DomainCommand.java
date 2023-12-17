@@ -16,8 +16,4 @@ public abstract class DomainCommand<T extends BaseDTO> {
     // DomainCommand 执行，都应该有一个返回值
     protected T returnResult;
 
-    public DomainCommand(Long orderId, ProcessType processType) {
-        this.orderId = orderId;
-        this.processType = processType;
-    }
 }

@@ -10,9 +10,11 @@ public class SubmitOrderEventConvert {
     public static SubmitOrderEvent convert(SubmitLineAOrderCommand command) {
 
         // 将 Command 转换为 Event
-        SubmitOrderEvent event = new SubmitOrderEvent(command.getOrderId(), command.getProcessType());
+        SubmitOrderEvent event = new SubmitOrderEvent();
         event.setProcessType(command.getProcessType());
         event.setOrderStatus(OrderStatus.Submit);
+        event.setOrderId(command.getOrderId());
+        event.setProcessType(command.getProcessType());
 
         return event;
     }

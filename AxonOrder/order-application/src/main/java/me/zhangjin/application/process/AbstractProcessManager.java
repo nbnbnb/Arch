@@ -45,12 +45,11 @@ public abstract class AbstractProcessManager implements InitializingBean {
     public abstract ProcessType getProcessType();
 
     @Override
-    public void afterPropertiesSet()  {
+    public void afterPropertiesSet() {
         initialize();
     }
 
     private static class BusWrapper {
-        private Logger logger = LoggerFactory.getLogger(getClass());
         private Integer priority;
         private Boolean ignoreException;
         private CommonMessageBus bus;
@@ -68,7 +67,6 @@ public abstract class AbstractProcessManager implements InitializingBean {
             try {
                 bus.publish(message);
             } catch (Exception ex) {
-                logger.error(ex.getMessage());
                 if (!ignoreException) {
                     throw ex;
                 }

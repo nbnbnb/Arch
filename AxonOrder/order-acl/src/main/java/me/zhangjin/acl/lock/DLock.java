@@ -6,15 +6,14 @@ import org.springframework.stereotype.Component;
 
 import java.util.concurrent.TimeUnit;
 
-@Component
 public class DLock {
 
-    @Autowired
     private OrderLogger orderLogger;
     private final String key;
 
-    public DLock(String key) {
+    public DLock(String key, OrderLogger orderLogger) {
         this.key = key;
+        this.orderLogger = orderLogger;
     }
 
     public Boolean tryLock(int expire, TimeUnit timeUnit) {

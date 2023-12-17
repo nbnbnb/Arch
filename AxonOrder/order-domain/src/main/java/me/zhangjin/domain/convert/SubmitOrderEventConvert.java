@@ -7,10 +7,10 @@ import me.zhangjin.domain.event.linea.SubmitOrderEvent;
 
 
 public class SubmitOrderEventConvert {
-    public static SubmitOrderEvent convert(SubmitLineAOrderCommand command){
+    public static SubmitOrderEvent convert(SubmitLineAOrderCommand command) {
 
         // 将 Command 转换为 Event
-        SubmitOrderEvent event = new SubmitOrderEvent(command.getOrderId());
+        SubmitOrderEvent event = new SubmitOrderEvent(command.getOrderId(), command.getProcessType());
         event.setProcessType(command.getProcessType());
         event.setOrderStatus(OrderStatus.Submit);
 

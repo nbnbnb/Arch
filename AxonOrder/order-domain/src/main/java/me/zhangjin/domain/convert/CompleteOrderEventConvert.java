@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 public class CompleteOrderEventConvert {
 
     public static CompleteOrderEvent convert(CompleteOrderCommand command){
-        CompleteOrderEvent completeOrderEvent = new CompleteOrderEvent(command.getOrderId());
+        CompleteOrderEvent completeOrderEvent = new CompleteOrderEvent(command.getOrderId(),command.getProcessType());
         completeOrderEvent.setCompleteType(command.getCompleteType());
         completeOrderEvent.setCompleteTime(LocalDateTime.now());
         completeOrderEvent.setOrderStatus(OrderStatus.Completed);

@@ -1,7 +1,7 @@
-package me.zhangjin.domain.config;
+package me.zhangjin.web.soa.config;
 
-import me.zhangjin.domain.bus.CommonMessageBus;
-import me.zhangjin.domain.bus.SubscriberProcessor;
+import me.zhangjin.application.bus.CommonMessageBus;
+import me.zhangjin.application.bus.SubscriberProcessor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

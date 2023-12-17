@@ -5,7 +5,8 @@ import me.zhangjin.domain.acl.repository.OrderRepository;
 import me.zhangjin.domain.acl.soa.RiskVerify;
 import me.zhangjin.domain.command.linea.SubmitLineAOrderCommand;
 import me.zhangjin.domain.entity.Order;
-import me.zhangjin.types.dto.SubmitOrderDTO;
+import me.zhangjin.types.dto.SubmitLineAOrderDTO;
+import me.zhangjin.types.exception.BizExceptioin;
 import net.engio.mbassy.listener.Handler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -20,7 +21,7 @@ public class SubmitLineAOrderCommandHandler {
     private RiskVerify riskVerify;
 
     @Handler
-    public SubmitOrderDTO submitLineAOrder(SubmitLineAOrderCommand command) {
+    public void submitLineAOrder(SubmitLineAOrderCommand command) {
 
         // 使用方式：
         // 在 handle 方法中，执行业务逻辑处理
@@ -34,7 +35,16 @@ public class SubmitLineAOrderCommandHandler {
 
         // 2. 执行业务逻辑（风控调用接口）
         // verify
-        riskVerify.riskCheck(command.getUid());
+        if (order != null) {
+            throw new BizExceptioin("1001", "order exists");
+        }
+
+        boolean riskCheck = riskVerify.riskCheck(command.getUid());
+        if (!riskCheck) {
+            throw new BizExceptioin("1002", "risk verify fail");
+        }
+
+        order = new Order();
 
         // 3. 变更快照状态（内存）
         order.submitOrder(command);
@@ -42,10 +52,10 @@ public class SubmitLineAOrderCommandHandler {
         // 4. 保存最新快照，并发送 MQ
         repository.save(order);
 
-        SubmitOrderDTO res = new SubmitOrderDTO();
+        // 5. 设置返回值
+        SubmitLineAOrderDTO res = new SubmitLineAOrderDTO();
         res.setSuccess(true);
-
-        return res;
+        command.setReturnResult(res);
 
     }
 }

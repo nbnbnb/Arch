@@ -2,6 +2,7 @@ package me.zhangjin.domain.event.common;
 
 import lombok.Getter;
 import lombok.Setter;
+import me.zhangjin.types.ProcessType;
 
 import java.time.LocalDateTime;
 
@@ -9,18 +10,22 @@ import java.time.LocalDateTime;
 @Setter
 public abstract class DomainEvent {
 
-    protected long eventVersion;
-    protected LocalDateTime occurredOn;
-    private String detailDesc;
-    private String operatorEid;
+    protected ProcessType processType;
     protected Long orderId;
 
-    public DomainEvent(Long orderId) {
-        occurredOn = LocalDateTime.now();
+    protected long eventVersion;
+    protected LocalDateTime occurredOn;
+    protected String detailDesc;
+    protected String operatorEid;
+
+
+    public DomainEvent(Long orderId, ProcessType processType) {
+        this.occurredOn = LocalDateTime.now();
         // 默认 System
         // 可以根据请求场景，重新赋值
-        operatorEid = "System";
+        this.operatorEid = "System";
         this.orderId = orderId;
+        this.processType = processType;
     }
 
     public abstract String getDesc();

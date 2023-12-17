@@ -15,10 +15,21 @@
 
     <dependencies>
 
-
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
         <dependency>
             <groupId>com.alibaba.cola.demo.web</groupId>
             <artifactId>order-application</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.cola.demo.web</groupId>
+            <artifactId>order-domain</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.cola.demo.web</groupId>
+            <artifactId>order-acl</artifactId>
         </dependency>
         <dependency>
             <groupId>org.aspectj</groupId>

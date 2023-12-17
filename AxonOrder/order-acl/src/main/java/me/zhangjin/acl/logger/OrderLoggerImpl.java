@@ -1,7 +1,9 @@
 package me.zhangjin.acl.logger;
 
 import me.zhangjin.domain.acl.logger.OrderLogger;
+import org.springframework.stereotype.Component;
 
+@Component
 public class OrderLoggerImpl implements OrderLogger {
 
     @Override

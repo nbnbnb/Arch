@@ -2,7 +2,9 @@ package me.zhangjin.domain.event.common;
 
 import lombok.Getter;
 import lombok.Setter;
+import me.zhangjin.domain.entity.Order;
 import me.zhangjin.domain.entity.OrderStatus;
+import me.zhangjin.types.ProcessType;
 
 import java.time.LocalDateTime;
 
@@ -10,8 +12,8 @@ import java.time.LocalDateTime;
 @Setter
 public class CompleteOrderEvent extends DomainEvent {
 
-    public CompleteOrderEvent(Long orderId){
-        super(orderId);
+    public CompleteOrderEvent(Long orderId, ProcessType processType) {
+        super(orderId, processType);
     }
 
     @Override

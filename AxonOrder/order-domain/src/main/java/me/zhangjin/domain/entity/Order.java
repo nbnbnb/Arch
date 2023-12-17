@@ -38,7 +38,7 @@ public class Order extends RootEntity {
     private LocalDateTime completeTime;
 
     // 订单数据
-    
+
     // coupon
     // userinfo
     // priceinfo

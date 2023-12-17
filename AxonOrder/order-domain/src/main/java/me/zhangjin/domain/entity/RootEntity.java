@@ -14,27 +14,22 @@ public abstract class RootEntity {
 
     private DomainEvent currentEvent;
 
-    public DomainEvent getCurrentEvent(){
+    public DomainEvent getCurrentEvent() {
         return currentEvent;
     }
 
     // 每次 apply 时会自动 +1
     private long version;
 
-
     public long getVersion() {
         return this.version;
-    }
-
-    public void setVersion(long version) {
-        this.version = version;
     }
 
     protected void apply(DomainEvent domainEvent) {
 
         // 设置 Order 的版本
         // 自动加 1
-        setVersion(getVersion() + 1);
+        this.version = this.version + 1;
 
         // 设置 Event 的版本，与 Order 保持一致
         // 便于后续排查问题

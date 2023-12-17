@@ -5,6 +5,7 @@ import me.zhangjin.domain.acl.repository.OrderRepository;
 import me.zhangjin.domain.command.common.DomainCommand;
 import me.zhangjin.domain.entity.Order;
 import me.zhangjin.domain.event.common.DomainEvent;
+import me.zhangjin.types.ProcessType;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -15,20 +16,14 @@ import java.util.Map;
 
 @Component
 public class ProcessManagerRouter implements ApplicationContextAware {
-
     private ApplicationContext applicationContext;
-
-    @Autowired
-    private OrderRepository orderRepository;
 
     @Autowired
     private Locker locker;
 
     public void dispatcher(DomainEvent event) {
-        Order order = orderRepository.load(event.getOrderId());
-
         // 找到对应的流程处理器
-        AbstractProcessManager manager = getProcessManager(order);
+        AbstractProcessManager manager = getProcessManager(event.getProcessType());
 
         // 使用分布式锁
         String lockKey = event.getOrderId().toString();
@@ -37,10 +32,8 @@ public class ProcessManagerRouter implements ApplicationContextAware {
     }
 
     public void dispatcher(DomainCommand command) {
-        Order order = orderRepository.load(command.getOrderId());
-
         // 找到对应的流程处理器
-        AbstractProcessManager manager = getProcessManager(order);
+        AbstractProcessManager manager = getProcessManager(command.getProcessType());
 
         // 使用分布式锁
         String lockKey = command.getOrderId().toString();
@@ -48,14 +41,14 @@ public class ProcessManagerRouter implements ApplicationContextAware {
 
     }
 
-    private AbstractProcessManager getProcessManager(Order order) {
+    private AbstractProcessManager getProcessManager(ProcessType processType) {
         Map<String, AbstractProcessManager> managers = applicationContext.getBeansOfType(AbstractProcessManager.class);
         for (AbstractProcessManager manager : managers.values()) {
-            if (manager.getProcessType() == order.getProcessType()) {
+            if (manager.getProcessType() == processType) {
                 return manager;
             }
         }
-        throw new RuntimeException(String.format("process manager not found !!,process type : %s", order.getProcessType()));
+        throw new RuntimeException(String.format("process manager not found !!,process type : %s", processType));
     }
 
     @Override

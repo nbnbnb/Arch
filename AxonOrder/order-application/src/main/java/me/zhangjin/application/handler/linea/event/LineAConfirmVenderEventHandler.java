@@ -44,6 +44,7 @@ public class LineAConfirmVenderEventHandler {
         autoCompleteCommand.setOrderId(order.getOrderId());
         autoCompleteCommand.setProcessType(order.getProcessType());
 
+        // 外部消息需要触发系统状态变更，必须发送 DomainCommand（与 SOA 接口请求一致）
         // 发送延迟消息（DomainCommand）
         messageProducer.sendDomainCommand(autoCompleteCommand, delayTime);
     }

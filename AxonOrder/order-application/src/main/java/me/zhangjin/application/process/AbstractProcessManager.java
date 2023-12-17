@@ -1,9 +1,9 @@
 package me.zhangjin.application.process;
 
-import me.zhangjin.application.bus.CommonMessageBus;
+
 import me.zhangjin.types.ProcessType;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import net.engio.mbassy.bus.IMessagePublication;
+import net.engio.mbassy.bus.MBassador;
 import org.springframework.beans.factory.InitializingBean;
 
 import java.util.ArrayList;
@@ -81,5 +81,23 @@ public abstract class AbstractProcessManager implements InitializingBean {
             this.bus = bus;
         }
     }
+
+    private static class CommonMessageBus<T> {
+
+        private MBassador<T> bus;
+
+        public CommonMessageBus() {
+            bus = new MBassador<>();
+        }
+
+        public void subscribe(Object listener) {
+            bus.subscribe(listener);
+        }
+
+        public void publish(T message) {
+            bus.publish(message);
+        }
+    }
+
 }
 

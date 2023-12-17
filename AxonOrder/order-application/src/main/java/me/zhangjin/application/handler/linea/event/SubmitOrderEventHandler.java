@@ -3,8 +3,10 @@ package me.zhangjin.application.handler.linea.event;
 import me.zhangjin.domain.acl.messaging.MessageProducer;
 import me.zhangjin.domain.acl.repository.OrderRepository;
 import me.zhangjin.domain.entity.Order;
+import me.zhangjin.domain.entity.OrderStatus;
 import me.zhangjin.domain.event.linea.SubmitOrderEvent;
 import me.zhangjin.domain.command.linea.SendVenderCommand;
+import me.zhangjin.types.exception.BizExceptioin;
 import net.engio.mbassy.listener.Handler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -65,6 +67,9 @@ public class SubmitOrderEventHandler {
 
         // 02. verify
         // 业务逻辑检查
+        if (order.getOrderStatus() != OrderStatus.Submit) {
+            throw new BizExceptioin("1003", "sendVender status check fail");
+        }
 
         Map<String, String> data = new HashMap<>();
         data.put("orderid", event.getOrderId().toString());

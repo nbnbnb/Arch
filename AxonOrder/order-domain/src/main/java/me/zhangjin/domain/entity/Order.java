@@ -21,7 +21,7 @@ import java.time.LocalDateTime;
 @Getter
 public class Order extends RootEntity {
 
-    private Integer orderStatus;
+    private OrderStatus orderStatus;
 
     private Long orderId;
 
@@ -72,7 +72,7 @@ public class Order extends RootEntity {
         this.orderId = event.getOrderId();
 
         // 设置订单状态为已提交
-        this.orderStatus = event.getOrderStatus().getCode();
+        this.orderStatus = event.getOrderStatus();
 
         // 获取流程类型
         this.processType = event.getProcessType();
@@ -81,19 +81,19 @@ public class Order extends RootEntity {
 
     private void when(SendVenderEvent event) {
         // 设置订单状态为已下单
-        this.orderStatus = event.getOrderStatus().getCode();
+        this.orderStatus = event.getOrderStatus();
     }
 
     private void when(ConfirmVenderEvent event) {
         // 设置订单状态为已下单
-        this.orderStatus = event.getOrderStatus().getCode();
+        this.orderStatus = event.getOrderStatus();
         this.venderId = event.getVenderId();
         this.venderOrderCode = event.getVenderOrderCode();
     }
 
     private void when(CompleteOrderEvent event) {
         // 设置为完成状态
-        this.orderStatus = event.getOrderStatus().getCode();
+        this.orderStatus = event.getOrderStatus();
         this.completeTime = event.getCompleteTime();
         this.completeType = event.getCompleteType();
     }

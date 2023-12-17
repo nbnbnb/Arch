@@ -37,6 +37,13 @@ public class Order extends RootEntity {
 
     private LocalDateTime completeTime;
 
+    // 订单数据
+    
+    // coupon
+    // userinfo
+    // priceinfo
+    // xinfo
+
     // region 通过公共方法，修改 Entity 状态，方法名有明确的业务含义
     public void submitOrder(SubmitLineAOrderCommand command) {
         // 将 Command 转换为 Event

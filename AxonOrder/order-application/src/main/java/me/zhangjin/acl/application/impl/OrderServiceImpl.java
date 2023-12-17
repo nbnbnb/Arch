@@ -6,7 +6,6 @@ import me.zhangjin.acl.command.SubmitOrderCommand;
 import me.zhangjin.acl.domain.service.LossFeeService;
 import me.zhangjin.acl.dto.SubmitOrderDTO;
 import me.zhangjin.acl.acl.external.ExchangeRateService;
-import me.zhangjin.acl.acl.messaging.AuditMessageProducer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

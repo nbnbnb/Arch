@@ -20,6 +20,11 @@ public class OrderLoggerImpl implements OrderLogger {
     }
 
     @Override
+    public void error(String message, Object... args) {
+        System.err.println(String.format(message, args));
+    }
+
+    @Override
     public void error(String message, Exception exception) {
         System.err.println(message + " message: " + exception.getMessage());
     }

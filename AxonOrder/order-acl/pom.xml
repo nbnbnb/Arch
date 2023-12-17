@@ -14,7 +14,14 @@
     <name>order-acl</name>
 
     <dependencies>
-
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.reflections</groupId>
+            <artifactId>reflections</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
